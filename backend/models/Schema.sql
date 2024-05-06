@@ -1,10 +1,13 @@
+DROP TABLE role;
+
 CREATE TABLE roles
 (
     id SERIAL NOT NULL,
     role VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
 );
-
+/*  */
+DROP TABLE permission;
 
 CREATE TABLE permissions
 (
@@ -12,6 +15,8 @@ CREATE TABLE permissions
     permission VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
 );
+
+DROP TABLE role_permission;
 
 CREATE TABLE role_permission
 (
@@ -22,6 +27,8 @@ CREATE TABLE role_permission
     FOREIGN KEY (permission_id) REFERENCES permissions(id),
     PRIMARY KEY (id)
 );
+
+DROP TABLE users;
 
 CREATE TABLE users
 (
@@ -38,6 +45,7 @@ CREATE TABLE users
     PRIMARY KEY (id)
 );
 
+DROP TABLE products;
 
 CREATE TABLE products
 (
@@ -51,6 +59,8 @@ CREATE TABLE products
     FOREIGN KEY (category_id) REFERENCES categories(id),
     PRIMARY KEY (id)
 );
+
+DROP TABLE comments;
 
 
 CREATE TABLE comments
@@ -66,6 +76,8 @@ CREATE TABLE comments
     PRIMARY KEY (id)
 );
 
+DROP TABLE categories;
+
 
 CREATE TABLE categories
 (
@@ -74,6 +86,9 @@ CREATE TABLE categories
     is_deleted SMALLINT DEFAULT 0,
     PRIMARY KEY (id)
 );
+
+DROP TABLE cart;
+
 
 CREATE TABLE cart
 (
