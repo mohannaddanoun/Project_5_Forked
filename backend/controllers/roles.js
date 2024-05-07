@@ -2,6 +2,7 @@ const { pool } = require("../models/db");
 
 // This function creates new role
 const createNewRole = (req, res) => {
+  console.log(req.body);
   const {role} = req.body;
 
   pool.query(`INSERT INTO roles (role) VALUES ($1) RETURNING *`,[role]).then((result)=>{
@@ -9,6 +10,7 @@ const createNewRole = (req, res) => {
       success:true,
       message:"Role created sucessfully",
       role:result.rows,
+    
     })
   }).catch((err)=>{
     res.status(500).json({

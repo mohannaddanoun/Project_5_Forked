@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 
 // This function creates (new user)
 const register = (req, res) => {
-  const { firstName, lastName, age, country, email, password, role_id = 5 } = req.body;
+  const { firstName, lastName, userName, country, email, password, role_id =2 } = req.body;
 
   // Check if email exists
   pool.query('SELECT * FROM users WHERE email = $1', [email])
@@ -26,8 +26,8 @@ const register = (req, res) => {
         }
 
         // Insert the user with hashed password
-        pool.query(`INSERT INTO users (firstName, lastName, age, country, email, password, role_id)
-          VALUES ($1, $2, $3, $4, LOWER($5), $6, $7)`, [firstName, lastName, age, country, email.toLowerCase(), hashedPassword, role_id])
+        pool.query(`INSERT INTO users (firstName, lastName, userName, country, email, password, role_id)
+          VALUES ($1, $2, $3, $4, LOWER($5), $6, $7)`, [firstName, lastName, userName, country, email.toLowerCase(), hashedPassword, role_id])
           .then(() => {
             res.status(201).json({
               success: true,
