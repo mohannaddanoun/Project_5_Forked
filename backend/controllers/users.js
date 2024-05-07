@@ -1,5 +1,5 @@
 const { pool } = require("../models/db");
-const bcrypt = require(process.env.bcrypt);
+const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 // This function creates (new user)
