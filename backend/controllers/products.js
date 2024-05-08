@@ -4,22 +4,47 @@ const { pool } = require("../models/db");
 
 const createProduct = (req, res) => {
   const { image, title, description, price, category_id } = req.body;
-  pool.query(`INSERT INTO products (image,title, description, price, category_id) VALUES ($1,$2,$3,$4,$5)RETURNING * ;`,[image, title, description, price, category_id]).then((result)=>{
-    res.status(200).json({
-        success :true,
-        message:"producte have been inserted",
-        result:result.rows
+  pool
+    .query(
+      `INSERT INTO products (image,title, description, price, category_id) VALUES ($1,$2,$3,$4,$5)RETURNING * ;`,
+      [image, title, description, price, category_id]
+    )
+    .then((result) => {
+      res.status(200).json({
+        success: true,
+        message: "producte have been inserted",
+        result: result.rows,
+      });
     })
-  })
-  .catch((err) => {
-    res.status(500).json({
-      success: false,
-      message: "Server error",
-      err: err,
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: "Server error",
+        err: err,
+      });
     });
-  });
 };
 
-module.exports={
-    createProduct
-}
+const getAllProducts = (req, res) => {
+  pool
+    .query(`SELECT * FROM products  a WHERE a.is_deleted=0;`)
+    .then((result) => {
+      res.status(200).json({
+        success: true,
+        message: "All products",
+        result: result.rows,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: "Server error",
+        err: err,
+      });
+    });
+};
+
+module.exports = {
+  createProduct,
+  getAllProducts,
+};
