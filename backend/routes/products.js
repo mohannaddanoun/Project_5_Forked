@@ -7,7 +7,7 @@ const authorization = require("../middlewares/authorization");
 
 const productsRouter = express.Router();
 
-productsRouter.post("/",authentication, createProduct);
+productsRouter.post("/",authentication,authorization("CREATE_PRODUCTS"), createProduct);
 productsRouter.get("/",getAllProducts)
 productsRouter.get("/:id",getProductsByCategoryId)
 module.exports = productsRouter;

@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 
 // This function creates (new user)
 const register = (req, res) => {
-  const { firstName, lastName, userName, country, email, password, role_id =2 } = req.body;
+  const { firstName, lastName, userName, country, email, password, role_id = 2 } = req.body;
 
   // Check if email exists
   pool.query('SELECT * FROM users WHERE email = $1', [email])
