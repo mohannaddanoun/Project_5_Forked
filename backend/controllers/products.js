@@ -67,6 +67,8 @@ const getProductsByCategoryId = (req, res) => {
       });
     });
 };
+
+
 module.exports = {
   createProduct,
   getAllProducts,
