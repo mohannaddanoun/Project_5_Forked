@@ -9,4 +9,4 @@ const cartRouter = express.Router();
 
 cartRouter.post("/",addtoCart);
 
-module.exports = productsRouter;
+module.exports = cartRouter;
