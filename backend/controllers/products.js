@@ -47,8 +47,8 @@ const getAllProducts = (req, res) => {
 // get products by category id
 
 const getProductsByCategoryId = (req, res) => {
-  const  categoryId  = req.params.id;
- console.log(req.params.id);
+  const categoryId = req.params.id;
+  console.log(req.params.id);
 
   pool
     .query(`SELECT * FROM products WHERE category_id=${categoryId}`)
@@ -69,8 +69,37 @@ const getProductsByCategoryId = (req, res) => {
 };
 
 
+// update products by admin
+const updateProduct = (req, res) => {
+  const productId = req.params.id;
+  const { title, description, price } = req.body;
+  let code=""
+  console.log(title);
+  console.log(productId);
+  pool
+    .query(
+      `UPDATE products SET title = COALESCE($1,title), description = COALESCE($2, description),price=COALESCE($3,price) WHERE id = $4 RETURNING *;`,[title,description,price,productId]
+    )
+    .then((result) => {
+      res.status(200).json({
+        success: true,
+        message: "producte have been updated",
+        result: result.rows,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: "Server error",
+        err: err,
+      });
+      console.log(err);
+    });
+};
+
 module.exports = {
   createProduct,
   getAllProducts,
   getProductsByCategoryId,
+  updateProduct,
 };
