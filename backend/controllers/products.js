@@ -68,6 +68,7 @@ const getProductsByCategoryId = (req, res) => {
     });
 };
 
+
 // update products by admin
 const updateProduct = (req, res) => {
   const productId = req.params.id;
@@ -95,6 +96,7 @@ const updateProduct = (req, res) => {
       console.log(err);
     });
 };
+
 module.exports = {
   createProduct,
   getAllProducts,
