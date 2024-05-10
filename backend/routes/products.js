@@ -1,5 +1,5 @@
 const express = require("express");
-const { createProduct, getAllProducts, getProductsByCategoryId, updateProduct } = require("../controllers/products");
+const { createProduct, getAllProducts, getProductsByCategoryId, updateProduct, deleteProduct } = require("../controllers/products");
 
 //authentication and authorization
 const authentication = require("../middlewares/authentication");
@@ -11,4 +11,5 @@ productsRouter.post("/",authentication,authorization("CREATE_PRODUCTS"), createP
 productsRouter.get("/",getAllProducts)
 productsRouter.get("/:id",getProductsByCategoryId)
 productsRouter.put("/:id",authentication,authorization("CREATE_PRODUCTS"),updateProduct)
+productsRouter.delete("/:id",authentication,authorization("CREATE_PRODUCTS"),deleteProduct)
 module.exports = productsRouter;

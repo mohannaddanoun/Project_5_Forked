@@ -21,6 +21,7 @@ const addtoCart = (req,res)=>{
     })
 }
 
+
 module.exports = {
     addtoCart
 }
