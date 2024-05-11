@@ -63,8 +63,36 @@ const getCommentsByProduct =(req,res)=>{
 
 }
 
+// This function delete the comment by Id
+
+const deleteCommentById =(req,res)=>{
+  const commentId=req.params.id
+  const isDeleted=1
+
+  pool.query(`UPDATE comments 
+  set is_deleted=$1 
+  WHERE id=$2 RETURNING *`,[isDeleted,commentId])
+  .then((result)=>{
+    res.status(200).json({
+      success:true,
+      message:`Comment:${commentId} deleted successfully`,
+      result:result.rows
+    })
+
+  }).catch((err) => {
+    res.status(500).json({
+      success: false,
+      message: `Server error`,
+      err: err.message,
+    });
+  });
+
+
+}
+
 module.exports ={
     createNewComment,
-    getCommentsByProduct
+    getCommentsByProduct,
+    deleteCommentById
 
 }
