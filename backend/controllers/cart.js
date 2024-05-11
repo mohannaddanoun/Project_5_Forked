@@ -21,11 +21,18 @@ const addtoCart = (req,res)=>{
     })
 }
 
+/* 
+user_id INT,
+product_id INT,
+is_deleted SMALLINT DEFAULT 0,
+*/
+
 //Delete from cart
 const deleteFromCart = (req,res)=>{
+    const userId = req.token.userId;
     const productId = req.params.id;
     pool
-      .query(`UPDATE cart SET is_deleted=1 WHERE id=$1 RETURNING *`, [productId])
+      .query(`UPDATE cart SET is_deleted=1 WHERE id=$1 AND user_id=$2 RETURNING *`, [productId,userId])
       .then((result) => {
         res.status(200).json({
           success: true,
