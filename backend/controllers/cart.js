@@ -21,7 +21,43 @@ const addtoCart = (req,res)=>{
     })
 }
 
+/* 
+user_id INT,
+product_id INT,
+is_deleted SMALLINT DEFAULT 0,
+*/
+
+//Delete from cart
+const deleteFromCart = (req,res)=>{
+    const userId = req.token.userId;
+    const productId = req.params.id;
+    pool
+      .query(`UPDATE cart SET is_deleted=1 WHERE id=$1 AND user_id=$2 RETURNING *`, [productId,userId])
+      .then((result) => {
+        res.status(200).json({
+          success: true,
+          message: "product deleted",
+          result: result.rows,
+        });
+      })
+      .catch((err) => {
+        res.status(500).json({
+          success: false,
+          message: "Server error",
+          err: err,
+        });
+        console.log(err);
+      });
+}
+
+//This function give the sum of prices in the cart
+/* 
+this function should take all the 
+*/
+
 
 module.exports = {
-    addtoCart
+    addtoCart,
+    deleteFromCart,
+
 }
