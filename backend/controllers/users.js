@@ -46,7 +46,9 @@ const register = (req, res) => {
       res.status(500).json({
         success: false,
         message: err.message
+      
       });
+      console.log(err);
     });
 };
 
@@ -86,6 +88,7 @@ const login = (req, res) => {
           success: true,
           message: `Valid login credentials`,
           token: token,
+          userId:payload.userId
         });
 
       }catch(err){

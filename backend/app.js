@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 
 require("dotenv").config();
 
@@ -8,7 +9,7 @@ require("./models/db");
 
 //built in middleware
 app.use(express.json());
-
+app.use(cors())
 //import routes
 const roleRouter = require("./routes/role");
 const userRouter = require("./routes/users");
