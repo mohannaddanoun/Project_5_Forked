@@ -1,4 +1,3 @@
-
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -6,6 +5,7 @@ import { useDispatch,useSelector } from "react-redux";
 import { setLogin,
     setUserId,
     setLogout,} from "../../redux/reducers/auth/index"
+    import { Button, Modal } from 'antd';
 
 //===============================================================
 
@@ -17,6 +17,7 @@ const Login = () => {
   const [message, setMessage] = useState("");
   const [password, setPassword] = useState("");
   const [status, setStatus] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 const {token,userid,isLoggedIn}=useSelector((state)=>{
   return{
 token:state.auth.token
@@ -97,6 +98,33 @@ isLoggedIn:state.auth.isLoggedIn
           : message && <div className="ErrorMessage">{message}</div>}
       </div>
     </>
+    /*import React, { useState } from 'react';
+
+const App = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+  return (
+    <>
+      <Button type="primary" onClick={showModal}>
+        Open Modal
+      </Button>
+      <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+      </Modal>
+    </>
+  );
+};
+export default App; */
   );
 };
 
