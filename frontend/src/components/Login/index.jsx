@@ -25,7 +25,15 @@ token:state.auth.token
 isLoggedIn:state.auth.isLoggedIn
   }
 })
-  //===============================================================
+=======
+  const {token,userid,isLoggedIn}=useSelector((state)=>{
+    return{
+  token:state.auth.token
+  ,userid:state.auth.userid,
+  isLoggedIn:state.auth.isLoggedIn
+    }
+  })
+
   console.log(token);
   console.log(userid);
   console.log(isLoggedIn);
