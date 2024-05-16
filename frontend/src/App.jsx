@@ -1,15 +1,16 @@
-import { RouterProvider } from 'react-router-dom'
 import './App.css'
+import { RouterProvider } from 'react-router-dom'
 import { router } from './Routers'
 import Login from './components/Login'
+import Main from './layouts/Main'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 
   return (
-    <div>
-<h1>asdaf</h1>
-    <Login></Login>
-    </div>
+    <RouterProvider router={router}>      
+    <Main></Main>
+    </RouterProvider>
   )
 }
 
