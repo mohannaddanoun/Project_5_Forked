@@ -5,6 +5,7 @@ import { useDispatch,useSelector } from "react-redux";
 import { setLogin,
     setUserId,
     setLogout,} from "../../redux/reducers/auth/index"
+    import { Button, Modal } from 'antd';
 
 //===============================================================
 
@@ -16,6 +17,15 @@ const Login = () => {
   const [message, setMessage] = useState("");
   const [password, setPassword] = useState("");
   const [status, setStatus] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+const {token,userid,isLoggedIn}=useSelector((state)=>{
+  return{
+token:state.auth.token
+,userid:state.auth.userid,
+isLoggedIn:state.auth.isLoggedIn
+  }
+})
+=======
   const {token,userid,isLoggedIn}=useSelector((state)=>{
     return{
   token:state.auth.token
@@ -23,7 +33,7 @@ const Login = () => {
   isLoggedIn:state.auth.isLoggedIn
     }
   })
-  //===============================================================
+
   console.log(token);
   console.log(userid);
   console.log(isLoggedIn);
@@ -48,7 +58,7 @@ const Login = () => {
        dispatch(setLogin(result.data.token),setUserId(result.data.userId))
       } else throw Error;
     } catch (error) {
-        setMessage(error.response.data.message);
+        setMessage(error.response);
     }
     
   };
@@ -96,6 +106,33 @@ const Login = () => {
           : message && <div className="ErrorMessage">{message}</div>}
       </div>
     </>
+    /*import React, { useState } from 'react';
+
+const App = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+  return (
+    <>
+      <Button type="primary" onClick={showModal}>
+        Open Modal
+      </Button>
+      <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+      </Modal>
+    </>
+  );
+};
+export default App; */
   );
 };
 

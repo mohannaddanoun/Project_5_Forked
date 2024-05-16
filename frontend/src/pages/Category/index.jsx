@@ -1,6 +1,7 @@
 import React from 'react'
 import Home from "../Home"
 
+
 function index() {
 
     /* useEffect(() => {
@@ -27,6 +28,8 @@ function index() {
             console.log(err.message);
         });
     }, []); */
+
+
 
   return (
     <div>
