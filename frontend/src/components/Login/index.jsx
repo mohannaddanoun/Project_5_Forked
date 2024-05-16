@@ -1,14 +1,4 @@
 
-import React from 'react'
-
-const index = () => {
-  return (
-    <div>index</div>
-  )
-}
-
-export default index
-
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -59,7 +49,7 @@ isLoggedIn:state.auth.isLoggedIn
        dispatch(setLogin(result.data.token),setUserId(result.data.userId))
       } else throw Error;
     } catch (error) {
-        setMessage(error.response.data.message);
+        setMessage(error.response);
     }
     
   };
