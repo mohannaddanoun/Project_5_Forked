@@ -1,3 +1,14 @@
+
+import React from 'react'
+
+const index = () => {
+  return (
+    <div>index</div>
+  )
+}
+
+export default index
+
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -100,3 +111,4 @@ isLoggedIn:state.auth.isLoggedIn
 };
 
 export default Login;
+
