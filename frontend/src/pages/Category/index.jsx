@@ -1,9 +1,10 @@
 import React from 'react'
+import Home from "../Home"
 
 function index() {
 
     /* useEffect(() => {
-        axios.get("http://localhost:5000/category", {
+        axios.get("http://localhost:5173//category", {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -26,9 +27,11 @@ function index() {
             console.log(err.message);
         });
     }, []); */
-    
+
   return (
-    <div>index</div>
+    <div>
+        <Home/>
+    </div>
   )
 }
 

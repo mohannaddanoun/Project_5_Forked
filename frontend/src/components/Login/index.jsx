@@ -16,13 +16,13 @@ const Login = () => {
   const [message, setMessage] = useState("");
   const [password, setPassword] = useState("");
   const [status, setStatus] = useState(false);
-const {token,userid,isLoggedIn}=useSelector((state)=>{
-  return{
-token:state.auth.token
-,userid:state.auth.userid,
-isLoggedIn:state.auth.isLoggedIn
-  }
-})
+  const {token,userid,isLoggedIn}=useSelector((state)=>{
+    return{
+  token:state.auth.token
+  ,userid:state.auth.userid,
+  isLoggedIn:state.auth.isLoggedIn
+    }
+  })
   //===============================================================
   console.log(token);
   console.log(userid);
