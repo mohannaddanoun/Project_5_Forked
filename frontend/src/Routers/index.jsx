@@ -5,6 +5,7 @@ import About from "../pages/About"
 import Cart from "../pages/Cart"
 import Category from "../pages/Category"
 import Register from "../components/Register"
+import NotFound from "../pages/NotFound"
 
 export const router = createBrowserRouter([
 {
@@ -33,8 +34,11 @@ export const router = createBrowserRouter([
             element:<Register/>
 
         }
-    ]
-
+    ],
+},
+{
+    path:"*",
+    element:<NotFound/>
 }
 
 ])

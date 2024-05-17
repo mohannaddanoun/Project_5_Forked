@@ -33,7 +33,7 @@ function index() {
 
   return (
     <div>
-        <Home/>
+        Index CAtegory
     </div>
   )
 }
