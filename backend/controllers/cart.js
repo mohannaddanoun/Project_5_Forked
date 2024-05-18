@@ -65,6 +65,7 @@ this function should take all the
 */
 const getProductsByUserId = (req, res) => {
   const userId = req.token.userId;
+  console.log(userId);
   pool
     .query(
       `SELECT image,title,price FROM cart AS C INNER JOIN products AS P ON C.product_id = P.id WHERE C.user_id = $1 `,[

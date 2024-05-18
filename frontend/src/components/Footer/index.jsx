@@ -1,11 +1,16 @@
-import React from 'react'
+import React from 'react';
+import { NavLink } from 'react-router-dom'; 
+import "./style.css"
 
-function index() {
+function Footer() {
   return (
-    <div>        
-        footer
-    </div>
-  )
+    <footer className="footer">
+      <NavLink exact to="/">Home</NavLink>
+      <NavLink to="/category">Category</NavLink>
+      <NavLink  to="/">Contact Us</NavLink>
+      <NavLink  to="/">About</NavLink>
+    </footer>
+  );
 }
 
-export default index
+export default Footer;
