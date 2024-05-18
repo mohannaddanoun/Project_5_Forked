@@ -3,6 +3,7 @@ import Main from "../layouts/Main"
 import Home from "../pages/Home"
 import About from "../pages/About"
 import Cart from "../pages/Cart"
+
 import Register from "../components/Register"
 import Products from "../components/products/Products"
 
@@ -29,6 +30,7 @@ export const router = createBrowserRouter([
             element: <Cart/>
         },
         {
+
             path:"register",
             element:<Register/>
 

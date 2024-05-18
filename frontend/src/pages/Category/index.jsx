@@ -32,7 +32,7 @@ function index() {
 
   return (
     <div>
-        Index CAtegory
+
         
     </div>
   )
