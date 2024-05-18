@@ -6,6 +6,7 @@ import Cart from "../pages/Cart"
 
 import Register from "../components/Register"
 import Products from "../components/products/Products"
+import OneProduct from "../components/OneProduct/oneProduct"
 
 export const router = createBrowserRouter([
 {
@@ -16,7 +17,7 @@ export const router = createBrowserRouter([
             path:"",
             element:<Home/>,
             children:[
-               
+                
                 
             ]
            
@@ -38,7 +39,12 @@ export const router = createBrowserRouter([
         {
             path:"/:id",
             element:<Products/>
+        },
+        {
+            path:"/product/:id",
+            element:<OneProduct/>
         }
+        
         
     ]
 

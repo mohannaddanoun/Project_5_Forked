@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setProducts } from "../../redux/reducers/products";
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
 import { Card } from "antd";
 const { Meta } = Card;
 
@@ -12,6 +12,7 @@ const { Meta } = Card;
 const Products = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
+    const navigate = useNavigate()
 
     const { products } = useSelector((state) => {
         return {
@@ -59,7 +60,10 @@ const Products = () => {
                 marginRight: "10px",
               }}
               key={index}
-            >
+              onClick={() => {
+                navigate(`/product/${oneProduct.id}`);
+              }}>
+            
               <Card
                 style={{
                   width: 300,
