@@ -3,8 +3,9 @@ import Main from "../layouts/Main"
 import Home from "../pages/Home"
 import About from "../pages/About"
 import Cart from "../pages/Cart"
-import Category from "../pages/Category"
+import Category from "../pages/category"
 import Register from "../components/Register"
+import Products from "../components/products/Products"
 
 export const router = createBrowserRouter([
 {
@@ -13,7 +14,12 @@ export const router = createBrowserRouter([
     children:[
         {
             path:"",
-            element:<Home/>
+            element:<Home/>,
+            children:[
+               
+                
+            ]
+           
         },
         {
             path:"about",
@@ -25,14 +31,20 @@ export const router = createBrowserRouter([
         },
         {
             path:"category",
-            element: <Category/>
+            element: <Category/>,
+           
 
         },
         {
             path:"register",
             element:<Register/>
 
+        },
+        {
+            path:"/:id",
+            element:<Products/>
         }
+        
     ]
 
 }
