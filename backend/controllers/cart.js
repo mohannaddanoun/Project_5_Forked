@@ -68,7 +68,7 @@ const getProductsByUserId = (req, res) => {
   console.log(userId);
   pool
     .query(
-      `SELECT image,title,price FROM cart AS C INNER JOIN products AS P ON C.product_id = P.id WHERE C.user_id = $1 `,[
+      `SELECT * FROM cart AS C INNER JOIN products AS P ON C.product_id = P.id WHERE C.user_id = $1 `,[
         userId
       ]
     )
