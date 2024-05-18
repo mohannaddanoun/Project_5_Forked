@@ -1,10 +1,9 @@
 import React from 'react'
-import Home from "../Home"
 
 
 function index() {
 
-    /* useEffect(() => {
+    /* useEffect(() =z> {
         axios.get("http://localhost:5173//category", {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -33,6 +32,7 @@ function index() {
 
   return (
     <div>
+
         
     </div>
   )
