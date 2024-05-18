@@ -1,10 +1,10 @@
 import React from 'react'
-
-function index() {
+import CartComponent from '../../components/cart/index'
+function Cart() {
   return (
-    <div>index CArt</div>
+    <div><CartComponent/></div>
 
   )
 }
 
-export default index
+export default Cart

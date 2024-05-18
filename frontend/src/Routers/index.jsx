@@ -3,9 +3,11 @@ import Main from "../layouts/Main"
 import Home from "../pages/Home"
 import About from "../pages/About"
 import Cart from "../pages/Cart"
+import CartComponent from "../components/cart"
 
 import Register from "../components/Register"
 import Products from "../components/products/Products"
+import Login from "../components/Login"
 
 export const router = createBrowserRouter([
 {
@@ -31,8 +33,8 @@ export const router = createBrowserRouter([
         },
         {
 
-            path:"register",
-            element:<Register/>
+            path:"login",
+            element:<Login/>
 
         },
         {
