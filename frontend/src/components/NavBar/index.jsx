@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import "./style.css";
 import { useSelector } from "react-redux";
@@ -21,7 +21,6 @@ const menuItems = [
     key: '2',
     icon: <CalendarOutlined />,
     label: <NavLink to={"/register"}>Register</NavLink>,
-
   },
 ];
 
@@ -39,11 +38,11 @@ const Navbar = () => {
 
   return (
     <nav className="navBBar navbar navbar-expand-lg navbar-dark bg-dark">
-      <NavLink className="navbar-brand" to="/">Infinite Horizon</NavLink>
-      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <NavLink className="navBar_firstItem navbar-brand" to="/">INFINITE HORIZON</NavLink>
+      <button className=" navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>
-      <div className="collapse navbar-collapse justify-content-between" id="navbarNav">
+      <div className="navBar_center_texts collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul className="navbar-nav">
           <li className="nav-item">
             <NavLink className="nav-link" activeClassName="active" exact to="/">Home</NavLink>
@@ -55,6 +54,8 @@ const Navbar = () => {
             <NavLink className="nav-link" activeClassName="active" to="/about">About</NavLink>
           </li>
         </ul>
+      </div>
+      <div className="navBar_logos navbar-nav">
         <ul className="navbar-nav">
           <li className="nav-item">
             <NavLink className="nav-link" activeClassName="active" to="/cart">

@@ -1,4 +1,28 @@
-.navBBar{
-    width: 100%;
-}
+.navBBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar-nav {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+  }
+  
+  .nav-item {
+    margin: 0 10px;
+  }
 
+  .navBar_center_texts{
+    margin-left: 20%;
+  }
+
+  .navBar_logos{
+    margin-left: 30%;
+  }
+
+  .navBar_firstItem{
+    margin-left: 2%;
+  }
+  
