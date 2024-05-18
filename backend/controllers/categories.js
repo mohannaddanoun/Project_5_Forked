@@ -26,6 +26,29 @@ const createNewCategory = (req, res) => {
     });
 };
 
+
+const getAllCategories = (req, res) => {
+  pool
+    .query(`SELECT * FROM categories  a WHERE a.is_deleted=0;`)
+    .then((result) => {
+      res.status(200).json({
+        success: true,
+        message: "All categories",
+        result: result.rows,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: "Server error",
+        err: err,
+      });
+    });
+};
+
+
+
 module.exports = {
   createNewCategory,
+  getAllCategories
 };
