@@ -4,6 +4,7 @@ import Home from "../pages/Home"
 import About from "../pages/About"
 import Cart from "../pages/Cart"
 import CartComponent from "../components/cart"
+import NotFound from "../pages/NotFound"
 
 import Register from "../components/Register"
 import Products from "../components/products/Products"
@@ -38,12 +39,20 @@ export const router = createBrowserRouter([
 
         },
         {
+            path:"register",
+            element:<Register/>
+        },
+        {
             path:"/:id",
             element:<Products/>
         }
         
     ]
 
+},
+{
+    path:"*",
+    element:<NotFound/>
 }
 
 ])

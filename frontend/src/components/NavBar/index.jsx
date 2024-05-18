@@ -1,16 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import "./style.css"
+import "./style.css";
 import { useSelector } from "react-redux";
+import { Menu, Dropdown } from 'antd';
+import {
+  AppstoreOutlined,
+  CalendarOutlined,
+  LinkOutlined,
+  MailOutlined,
+  SettingOutlined,
+} from '@ant-design/icons';
+
+const menuItems = [
+  {
+    key: '1',
+    icon: <MailOutlined />,
+    label: <NavLink to={"/login"}>Login</NavLink>,
+  },
+  {
+    key: '2',
+    icon: <CalendarOutlined />,
+    label: <NavLink to={"/register"}>Register</NavLink>,
+
+  },
+];
+
+const menu = (
+  <Menu items={menuItems} />
+);
 
 const Navbar = () => {
-  
   const { token, isLoggedIn } = useSelector((state) => {
     return {
       token: state.auth.token,
       isLoggedIn: state.auth.isLoggedIn
-    }
-  })
+    };
+  });
 
   return (
     <nav className="navBBar navbar navbar-expand-lg navbar-dark bg-dark">
@@ -39,18 +64,19 @@ const Navbar = () => {
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink className="nav-link" activeClassName="active" to="/login">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person-circle" viewBox="0 0 16 16">
-                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-                <path fillRule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
-              </svg>
-            </NavLink>
+            <Dropdown overlay={menu} trigger={['click']}>
+              <NavLink className="nav-link" activeClassName="active" to="#" onClick={e => e.preventDefault()}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person-circle" viewBox="0 0 16 16">
+                  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                  <path fillRule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                </svg>
+              </NavLink>
+            </Dropdown>
           </li>
         </ul>
       </div>
     </nav>
   );
 };
-
 
 export default Navbar;
