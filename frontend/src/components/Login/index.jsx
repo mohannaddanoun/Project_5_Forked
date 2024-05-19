@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch,useSelector } from "react-redux";
 import { setLogin,
@@ -10,7 +10,7 @@ import { setLogin,
 //===============================================================
 
 const Login = () => {
-
+  const navigate = useNavigate();
   const dispatch =useDispatch();
 
   const [email, setEmail] = useState("");
@@ -41,6 +41,10 @@ isLoggedIn:state.auth.isLoggedIn
         }
       const result = await axios.post("http://localhost:5000/users/login",input)
       console.log(result.data);
+        if(result.data.role === 1){
+          navigate('/adminPage');
+        }
+
       if (result.data) {
         console.log(result.data);
         setMessage("");
