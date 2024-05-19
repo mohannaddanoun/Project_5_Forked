@@ -10,6 +10,7 @@ import Register from "../components/Register"
 import Products from "../components/products/Products"
 import OneProduct from "../components/OneProduct/oneProduct"
 import Login from "../components/Login"
+import AdminHome from "../pages/AdminHome"
 
 export const router = createBrowserRouter([
 {
@@ -50,11 +51,14 @@ export const router = createBrowserRouter([
         {
             path:"/product/:id",
             element:<OneProduct/>
-        }
-        
+        },
         
     ]
 
+},
+{
+    path:"/adminPage",
+    element:<AdminHome/>
 },
 {
     path:"*",

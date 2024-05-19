@@ -88,7 +88,8 @@ const login = (req, res) => {
           success: true,
           message: `Valid login credentials`,
           token: token,
-          userId:payload.userId
+          userId:payload.userId,
+          role:payload.role
         });
 
       }catch(err){
