@@ -1,20 +1,21 @@
-import  { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useState } from 'react';
+import { useDispatch,useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import './style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import AddPhoto from '../../components/addPhotos';
+import { setLogout } from '../../redux/reducers/auth';
 
 function Index() {
   const navigate = useNavigate();
   const { token } = useSelector((state) => ({
     token: state.auth.token,
-   
   }));
 
   const navigateHome = () => navigate('/adminPage');
   const navigateMessage = () => navigate('/');
+  const dispatch = useDispatch();
 
   const [categoryTitle, setCategoryTitle] = useState('');
   const [categoryImage, setCategoryImage] = useState('');
@@ -22,6 +23,21 @@ function Index() {
   const [productDescription, setProductDescription] = useState('');
   const [productPrice, setProductPrice] = useState('');
   const [productImage, setProductImage] = useState('');
+  const [productID, setProductID] = useState('');
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('');
+
+ /*  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const result = await axios.get("http://localhost:5000/categories/");
+        setCategories(result.data);
+      } catch (err) {
+        console.error("Error fetching categories:", err.message);
+      }
+    };
+    fetchCategories();
+  }, []); */
 
   const handleCategoryTitleChange = (e) => setCategoryTitle(e.target.value);
   const handleCategoryImageChange = (url) => setCategoryImage(url);
@@ -30,6 +46,7 @@ function Index() {
   const handleProductDescriptionChange = (e) => setProductDescription(e.target.value);
   const handleProductPriceChange = (e) => setProductPrice(e.target.value);
   const handleProductImageChange = (url) => setProductImage(url);
+  const handleCategoryChange = (e) => setSelectedCategory(e.target.value);
 
   const handleCategorySubmit = async (e) => {
     e.preventDefault();
@@ -58,32 +75,37 @@ function Index() {
   const handleProductSubmit = async (e) => {
     e.preventDefault();
     const input = {
-      /* image,title, description, price, category_id */
-      image:  productImage,
-      title:   productTitle,
-      description:  productDescription,
-      price:  productPrice,
-      category_id:null,
+      image: productImage,
+      title: productTitle,
+      description: productDescription,
+      price: productPrice,
+      category_id: selectedCategory,
     };
-console.log(token);
+
     try {
-      const result = await axios.post("http://localhost:5000/products/", input,{
-            headers: {
-              Authorization:` Bearer ${token}`, },  
+      const result = await axios.post("http://localhost:5000/products/", input, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
       if (result.data) {
         console.log({
           success: true,
           message: result.data,
         });
-      } 
+      }
     } catch (err) {
-      console.log(err);
       console.error({
         success: false,
         message: err.message,
       });
     }
+  };
+
+  const handleLogout = () => {
+    dispatch(setLogout());
+    localStorage.clear();
+    navigate('/');
   };
 
   return (
@@ -98,6 +120,9 @@ console.log(token);
               </li>
               <li className="nav-item">
                 <span className="nav-link" onClick={navigateMessage}>Messages</span>
+              </li>
+              <li className="nav-item">
+                <button className="btn btn-outline-light ml-2" onClick={handleLogout}>Logout</button>
               </li>
             </ul>
           </div>
@@ -166,6 +191,21 @@ console.log(token);
                       onChange={handleProductPriceChange} 
                       required 
                     />
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="categorySelect" className="form-label">Product Category</label>
+                    <select 
+                      className="form-control" 
+                      id="categorySelect" 
+                      value={selectedCategory} 
+                      onChange={handleCategoryChange} 
+                      required
+                    >
+                      <option value="">Select Category</option>
+                      {categories.map((category) => (
+                        <option key={category._id} value={category._id}>{category.title}</option>
+                      ))}
+                    </select>
                   </div>
                   <div className="mb-3">
                     <label htmlFor="productImage" className="form-label">Product Image</label>
