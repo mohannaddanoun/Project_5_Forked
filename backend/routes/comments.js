@@ -10,10 +10,6 @@ const{createNewComment,getCommentsByProduct,deleteCommentById}=require("../contr
 const authentication=require("../middlewares/authentication")
 const authorization=require("../middlewares/authorization")
 
-
-
-
-
 commentsRouter.post("/addComment:id",authentication,authorization("ADD_COMMENT"),createNewComment)
 commentsRouter.get("/allCommentsByProduct:id",authentication,getCommentsByProduct)
 commentsRouter.delete("/deleteCommentBy:id",authentication,authorization("CREATE_PRODUCTS"),deleteCommentById)
