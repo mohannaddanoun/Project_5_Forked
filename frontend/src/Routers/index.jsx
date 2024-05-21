@@ -3,7 +3,6 @@ import Main from "../layouts/Main"
 import Home from "../pages/Home"
 import About from "../pages/About"
 import Cart from "../pages/Cart"
-import CartComponent from "../components/cart"
 import NotFound from "../pages/NotFound"
 
 import Register from "../components/Register"
