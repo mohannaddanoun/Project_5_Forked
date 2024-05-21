@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import emailjs from '@emailjs/browser';
+import { useState } from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
@@ -13,8 +12,9 @@ export const ContactUs = () => {
   });
 
   const { token } = useSelector((state) => ({
-    token: state.auth.token,
+    token: state.auth.token || localStorage.token,
   }));
+
   const handleChange =(e) => {
     const { name, value } = e.target;
     setFormData({
