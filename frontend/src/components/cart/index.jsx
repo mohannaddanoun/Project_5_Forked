@@ -7,6 +7,7 @@ import { setCart,
      deleteProductById
 } from "../../redux/reducers/cart/index"
 import {Card,Modal,Button} from 'antd'
+import index from '../../pages/About'
 const {Meta}=Card
 
 // import auth from "../../redux/reducers/auth/index"
@@ -18,20 +19,20 @@ const CartComponent = () => {
         };
        
     });
-console.log(token);
+
     const {cart}=useSelector((state)=>{
         return{
             cart: state.cart.inCart
         };
        
     });
-    console.log(cart);
 
     const [open, setOpen] = React.useState(false);
     const [name, setName] = useState();
     const [img, setImg] = useState();
     const [id, setId] = useState();
-    const [newName, setNewName] = useState();
+    const [price, setPrice] = useState();
+    const [number, setNumber] = useState(1)
     const [description, setDescription] = useState();
     const [delOpen, setDelOpen] = useState(false);
     const handleClose = () => {
@@ -46,6 +47,20 @@ console.log(token);
     const handleClickDelClose = () => {
       setDelOpen(false);
     };
+    console.log(number);
+    console.log(id);
+    const update= async ()=>{
+     try{
+        const result = await axios.put(`http://localhost:5000/cart`,{
+            productId:id,
+            itemcount:number
+        })
+        console.log(result);
+     }catch(err){
+        console.log(err);
+     }
+        handleClose()
+    }
 const getAllProductsByUserId =async ()=>{
     try{
         const result =await axios.get(`http://localhost:5000/cart`,  {
@@ -53,9 +68,9 @@ const getAllProductsByUserId =async ()=>{
               Authorization: `Bearer ${token}`,
             },
           })
-         console.log(result.data);
+       
         dispatch(setCart(result.data.result))
-
+console.log(number);
 
     }catch(error){
         console.log(error);
@@ -64,16 +79,20 @@ const getAllProductsByUserId =async ()=>{
 
 useEffect(()=>{
     getAllProductsByUserId()
-},[])
+},[open])
   return (
     <div
     style={{
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
       height: "100%",
       marginTop: 100,
       padding: "50px",
+  
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
+        gridGap: "10px",
+        margin: 20,
+        backgroundColor: "ButtonShadow",
+        padding: "10px",
     }}
   >
     {cart.length === 0 ? (
@@ -95,8 +114,10 @@ useEffect(()=>{
                 handleClickOpen();
                 setName(product.title);
                 setImg(product.image);
-                setId(product._id);
-                console.log(product.id);
+                setId(product.product_id);
+                setPrice(product.price)
+                setDescription(product.itemcount)
+                console.log(product.itemcount);
               }}
               style={{
                 width: 300,
@@ -119,7 +140,8 @@ useEffect(()=>{
         );
       })
     )}
-    <Modal
+   
+      {open && <><Modal
         open={open}
         onOk={handleClose}
         onCancel={handleClose}
@@ -127,7 +149,7 @@ useEffect(()=>{
           <Button key="back" onClick={handleClickDelOpen}>
             Delete
           </Button>,
-          <Button key="submit" type="primary" onClick={handleClose}>
+          <Button key="submit" type="primary" onClick={update}>
             Update
           </Button>,
         ]}
@@ -140,20 +162,11 @@ useEffect(()=>{
           src={img}
         />
         <p>{name}</p>
-        <input
-          type="text"
-          onChange={(e) => {
-            setNewName(e.target.value);
-          }}
-          placeholder="name"
-        ></input>
-        <input
-          type="text"
-          onChange={(e) => {
-            setDescription(e.target.value);
-          }}
-          placeholder="description"
-        ></input>
+
+        <input type="number" id="quantity" name="quantity" min="1" max="5" onChange={(e)=>{setNumber(e.target.value)
+        console.log(e.target.value);}}placeholder='1'></input>
+        <p>Number of items : {description} </p>
+        <p> Price of items : {description*price}</p>
       </Modal>
       <Modal
         title="Delete product"
@@ -170,7 +183,7 @@ useEffect(()=>{
         ]}
       >
         <p>Are you sure you want to delete this product?</p>
-      </Modal>
+      </Modal> </>}
   </div>
 
   )

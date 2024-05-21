@@ -12,10 +12,10 @@ export const cartSlice = createSlice({
     },
 
     addProduct: (state, action) => {
-      stateinCart.push(action.payload);
+      state.inCart.push(action.payload);
     },
     checkoutCart: (state, action) => {
-      
+
     },
     deleteProductById: (state, action) => {
       state.inCart = state.inCart.filter(

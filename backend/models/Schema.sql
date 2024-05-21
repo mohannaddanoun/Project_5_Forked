@@ -95,6 +95,7 @@ CREATE TABLE cart
     id SERIAL NOT NULL,
     user_id INT,
     product_id INT,
+    itemCount INT,
     is_deleted SMALLINT DEFAULT 0,
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (product_id) REFERENCES products(id),
