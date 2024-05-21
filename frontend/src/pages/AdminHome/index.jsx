@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useDispatch,useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import './style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -23,21 +23,27 @@ function Index() {
   const [productDescription, setProductDescription] = useState('');
   const [productPrice, setProductPrice] = useState('');
   const [productImage, setProductImage] = useState('');
-  const [productID, setProductID] = useState('');
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
 
- /*  useEffect(() => {
+
+  useEffect(() => {
     const fetchCategories = async () => {
       try {
         const result = await axios.get("http://localhost:5000/categories/");
-        setCategories(result.data);
+        console.log(result.data);
+
+        if (Array.isArray(result.data.result)) {
+          setCategories(result.data.result);
+        } else {
+          console.error("Array:", result.data.result);
+        }
       } catch (err) {
         console.error("Error fetching categories:", err.message);
       }
     };
     fetchCategories();
-  }, []); */
+  }, []);
 
   const handleCategoryTitleChange = (e) => setCategoryTitle(e.target.value);
   const handleCategoryImageChange = (url) => setCategoryImage(url);
@@ -203,7 +209,7 @@ function Index() {
                     >
                       <option value="">Select Category</option>
                       {categories.map((category) => (
-                        <option key={category._id} value={category._id}>{category.title}</option>
+                        <option key={category.id} value={category.id}>{category.title}</option>
                       ))}
                     </select>
                   </div>
