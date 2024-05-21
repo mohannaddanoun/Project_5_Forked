@@ -89,8 +89,36 @@ const getProductsByUserId = (req, res) => {
     });
 };
 
+// update itemcount
+const itemcountInCart = (req, res) => {
+  const productId = req.body.productId;
+  const itemcount = req.body.itemcount;
+  pool
+    .query(
+      `UPDATE cart SET itemcount=$1 WHERE product_id=$2 RETURNING *`,
+      [itemcount, productId]
+    )
+    .then((result) => {
+      res.status(200).json({
+        success: true,
+        message: "product added item",
+        result: result.rows,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: "Server error",
+        err: err,
+      });
+      console.log(err);
+    });
+};
+
+
 module.exports = {
   addtoCart,
   deleteFromCart,
-  getProductsByUserId
+  getProductsByUserId,
+  itemcountInCart
 };

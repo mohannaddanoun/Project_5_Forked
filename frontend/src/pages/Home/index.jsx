@@ -149,7 +149,9 @@ const Home = () => {
               onClick={() => {
                 navigate(`/product/${oneProduct.id}`);
               }}>
-                <img src={oneProduct.image} />
+                <img
+                 style={{ minHeight: 160, maxHeight: 140 }}
+                 src={oneProduct.image} />
                 <h3>{oneProduct.title}</h3>
                 <h4>{oneProduct.price}</h4>
               </div>
