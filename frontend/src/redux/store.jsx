@@ -11,7 +11,7 @@ export default configureStore({
 auth:authReducer,
 products : productsReducer,
 categories : categorySlice,
-oneProduct:oneProductReducer
+oneProduct:oneProductReducer,
 cart : cartSlice,
     },
 })
