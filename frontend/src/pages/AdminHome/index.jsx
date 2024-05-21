@@ -142,6 +142,10 @@ function Index() {
             <div className="card mt-3">
               <div className="card-body">
                 <h5 className="card-title">Create Category</h5>
+
+                <>
+                <AddPhoto onUrlChange={handleCategoryImageChange} />
+                </>
                 <form onSubmit={handleCategorySubmit}>
                   <div className="mb-3">
                     <label htmlFor="categoryTitle" className="form-label">Category Title</label>
@@ -156,15 +160,17 @@ function Index() {
                   </div>
                   <div className="mb-3">
                     <label htmlFor="categoryImage" className="form-label">Category Image</label>
-                    <AddPhoto onUrlChange={handleCategoryImageChange} />
+                    
                   </div>
                   <button type="submit" className="btn btn-primary">Create Category</button>
                 </form>
+              
               </div>
             </div>
             <div className="card mt-3">
               <div className="card-body">
                 <h5 className="card-title">Create Product</h5>
+                <AddPhoto onUrlChange={handleProductImageChange} />
                 <form onSubmit={handleProductSubmit}>
                   <div className="mb-3">
                     <label htmlFor="productTitle" className="form-label">Product Title</label>
@@ -215,7 +221,7 @@ function Index() {
                   </div>
                   <div className="mb-3">
                     <label htmlFor="productImage" className="form-label">Product Image</label>
-                    <AddPhoto onUrlChange={handleProductImageChange} />
+                   
                   </div>
                   <button type="submit" className="btn btn-primary">Create Product</button>
                 </form>
