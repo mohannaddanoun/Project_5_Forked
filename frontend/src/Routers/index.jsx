@@ -10,6 +10,7 @@ import Products from "../components/products/Products"
 import OneProduct from "../components/OneProduct/oneProduct"
 import Login from "../components/Login"
 import AdminHome from "../pages/AdminHome"
+import { ContactUs } from "../pages/Contact Us"
 
 export const router = createBrowserRouter([
 {
@@ -26,12 +27,16 @@ export const router = createBrowserRouter([
            
         },
         {
-            path:"about",
-            element:<About/>
-        },
-        {
             path:"cart",
             element: <Cart/>
+        },
+        {
+            path:"contactUs",
+            element: <ContactUs/>
+        },
+        {
+            path:"about",
+            element:<About/>
         },
         {
 

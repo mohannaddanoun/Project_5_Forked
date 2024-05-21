@@ -17,15 +17,17 @@ const categoriesRouter = require("./routes/categories");
 const productsRouter = require("./routes/products");
 const commentsRouter=require("./routes/comments")
 const cartRouter = require("./routes/cart");
+const messageRouter = require("./routes/message");
 
 
 // Routes Middleware
 app.use("/users", userRouter);
 app.use("/roles", roleRouter);
 app.use("/categories", categoriesRouter);
-app.use("/products",productsRouter)
-app.use("/comments",commentsRouter)
+app.use("/products",productsRouter);
+app.use("/comments",commentsRouter);
 app.use("/cart",cartRouter);
+app.use("/messages",messageRouter);
 
 
 

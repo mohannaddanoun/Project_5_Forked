@@ -103,6 +103,19 @@ CREATE TABLE cart
 );
 
 
+DROP TABLE messages;
 
+
+CREATE TABLE messages
+(
+    id SERIAL NOT NULL,
+    user_name VARCHAR(255),
+    user_email VARCHAR(255),
+    user_title VARCHAR(255),
+    user_message VARCHAR(255),
+    is_deleted SMALLINT DEFAULT 0,
+    FOREIGN KEY (user_email) REFERENCES users(email),
+    PRIMARY KEY (id)
+);
 
 
