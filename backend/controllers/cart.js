@@ -39,7 +39,7 @@ const deleteFromCart = (req, res) => {
   const productId = req.params.id;
   pool
     .query(
-      `UPDATE cart SET is_deleted=1 WHERE id=$1 AND user_id=$2 RETURNING *`,
+      `UPDATE cart SET is_deleted=1 WHERE product_id=$1 AND user_id=$2 RETURNING *`,
       [productId, userId]
     )
     .then((result) => {

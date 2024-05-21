@@ -41,7 +41,7 @@ isLoggedIn:state.auth.isLoggedIn
         }
       const result = await axios.post("http://localhost:5000/users/login",input)
       console.log(result.data);
-        if(result.data.role === 1){
+        if(result.data.role === 4){
           navigate('/adminPage');
         }
 

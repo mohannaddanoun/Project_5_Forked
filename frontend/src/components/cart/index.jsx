@@ -68,13 +68,32 @@ const getAllProductsByUserId =async ()=>{
               Authorization: `Bearer ${token}`,
             },
           })
-       
+       let resArr= result.data.result
+       const res = resArr.filter((product)=>product.product_id !==1)
         dispatch(setCart(result.data.result))
-console.log(number);
+
+console.log(res);
 
     }catch(error){
         console.log(error);
     }
+}
+
+const DeleteProductById = async ()=>{
+    try{
+        const result = await axios.delete(`http://localhost:5000/cart/${id}`,  {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          console.log(result);
+    }catch(err) {
+        console.log(err);
+    }
+    handleClickDelClose()
+    handleClose()
+    dispatch(deleteProductById(id))
+    console.log(cart);
 }
 
 useEffect(()=>{
@@ -99,8 +118,9 @@ useEffect(()=>{
       <h1>no products yet</h1>
     ) : (
       cart.map((product, index) => {
+  
         return (
-          <div
+         <div
             style={{
               alignItems: "center",
               width: "25%",
@@ -137,6 +157,8 @@ useEffect(()=>{
               />
             </Card>
           </div>
+         
+        
         );
       })
     )}
@@ -177,7 +199,7 @@ useEffect(()=>{
           <Button key="back" onClick={handleClickDelClose}>
             No
           </Button>,
-          <Button key="submit" type="primary" onClick={handleClickDelClose}>
+          <Button key="submit" type="primary" onClick={DeleteProductById}>
             Yes
           </Button>,
         ]}
