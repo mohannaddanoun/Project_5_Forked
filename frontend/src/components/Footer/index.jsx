@@ -7,8 +7,8 @@ function Footer() {
     <footer className="footer">
       <NavLink exact to="/">Home</NavLink>
       <NavLink to="/category">Category</NavLink>
-      <NavLink  to="/">Contact Us</NavLink>
-      <NavLink  to="/">About</NavLink>
+      <NavLink  to="/contactUs" >Contact Us</NavLink>
+      <NavLink  to="/about">About</NavLink>
     </footer>
   );
 }

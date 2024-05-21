@@ -4,11 +4,8 @@ import "./style.css";
 import { useSelector } from "react-redux";
 import { Menu, Dropdown } from 'antd';
 import {
-  AppstoreOutlined,
   CalendarOutlined,
-  LinkOutlined,
   MailOutlined,
-  SettingOutlined,
 } from '@ant-design/icons';
 
 const menuItems = [

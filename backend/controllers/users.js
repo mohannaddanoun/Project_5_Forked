@@ -78,6 +78,7 @@ const login = (req, res) => {
           userId: result.rows[0].id,
           role: result.rows[0].role_id,
           country: result.rows[0].country,
+          userEmail:result.rows[0].email
         };
 
         const options = {
@@ -89,7 +90,8 @@ const login = (req, res) => {
           message: `Valid login credentials`,
           token: token,
           userId:payload.userId,
-          role:payload.role
+          role:payload.role,
+          userEmail:payload.userEmail
         });
 
       }catch(err){
