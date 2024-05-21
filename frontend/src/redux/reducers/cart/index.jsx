@@ -17,11 +17,7 @@ export const cartSlice = createSlice({
     checkoutCart: (state, action) => {
 
     },
-    deleteProductById: (state, action) => {
-      state.inCart = state.inCart.filter(
-        (product) => product.product_id !== action.payload
-      );
-    },
+   
   },
 });
 

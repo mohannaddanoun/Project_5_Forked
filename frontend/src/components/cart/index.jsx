@@ -1,13 +1,8 @@
 import axios from 'axios'
 import React,{useEffect, useState} from 'react'
 import { useDispatch,useSelector } from 'react-redux'
-import { setCart,
-    addProduct,
-     checkoutCart,
-     deleteProductById
-} from "../../redux/reducers/cart/index"
+import { setCart} from "../../redux/reducers/cart/index"
 import {Card,Modal,Button} from 'antd'
-import index from '../../pages/About'
 const {Meta}=Card
 
 // import auth from "../../redux/reducers/auth/index"
@@ -47,8 +42,6 @@ const CartComponent = () => {
     const handleClickDelClose = () => {
       setDelOpen(false);
     };
-    console.log(number);
-    console.log(id);
     const update= async ()=>{
      try{
         const result = await axios.put(`http://localhost:5000/cart`,{
@@ -68,11 +61,8 @@ const getAllProductsByUserId =async ()=>{
               Authorization: `Bearer ${token}`,
             },
           })
-       let resArr= result.data.result
-       const res = resArr.filter((product)=>product.product_id !==1)
+       
         dispatch(setCart(result.data.result))
-
-console.log(res);
 
     }catch(error){
         console.log(error);
@@ -92,8 +82,6 @@ const DeleteProductById = async ()=>{
     }
     handleClickDelClose()
     handleClose()
-    dispatch(deleteProductById(id))
-    console.log(cart);
 }
 
 useEffect(()=>{
