@@ -14,7 +14,7 @@ function Index() {
   }));
 
   const navigateHome = () => navigate('/adminPage');
-  const navigateMessage = () => navigate('/');
+  const navigateMessage = () => navigate('/message');
   const dispatch = useDispatch();
 
   const [categoryTitle, setCategoryTitle] = useState('');

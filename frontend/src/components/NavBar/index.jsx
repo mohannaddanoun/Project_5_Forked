@@ -1,22 +1,22 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./style.css";
-import { useSelector } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { Menu, Dropdown } from 'antd';
 import {
-  CalendarOutlined,
-  MailOutlined,
+  UserOutlined,
+  UserAddOutlined,
 } from '@ant-design/icons';
+import { setLogout } from "../../redux/reducers/auth";
 
 const menuItems = [
   {
     key: '1',
-    icon: <MailOutlined />,
+    icon: <UserOutlined />,
     label: <NavLink to={"/login"}>Login</NavLink>,
   },
   {
     key: '2',
-    icon: <CalendarOutlined />,
+    icon: <UserAddOutlined />,
     label: <NavLink to={"/register"}>Register</NavLink>,
   },
 ];
@@ -32,6 +32,16 @@ const Navbar = () => {
       isLoggedIn: state.auth.isLoggedIn
     };
   });
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+
+
+const handleLogout = () => {
+    dispatch(setLogout());
+    localStorage.clear();
+    navigate('/');
+  };
 
   return (
     <nav className="navBBar navbar navbar-expand-lg navbar-dark bg-dark">
@@ -61,6 +71,9 @@ const Navbar = () => {
               </svg>
             </NavLink>
           </li>
+          { isLoggedIn? <li className="nav-item">
+          <button className="btn btn-outline-light ml-2" onClick={handleLogout}>Logout</button>
+        </li>   :
           <li className="nav-item">
             <Dropdown overlay={menu} trigger={['click']}>
               <NavLink className="nav-link" activeClassName="active" to="#" onClick={e => e.preventDefault()}>
@@ -70,7 +83,7 @@ const Navbar = () => {
                 </svg>
               </NavLink>
             </Dropdown>
-          </li>
+          </li> }
         </ul>
       </div>
     </nav>
