@@ -83,11 +83,13 @@ const OneProduct = () => {
               onClick={() => {
                 navigate(`/product/${Product.id}`);
               }}>
-                <img src={Product.image} />
+                
+                <img style={{maxHeight:150 , maxWidth:200}} src={Product.image} />
                 <h3>{Product.title}</h3>
                 <h3>{Product.description}</h3>
                 <h4>{Product.price}</h4>
                 <button onClick={AddToCart}>add to cart</button>
+               
               </div>
             );
           })

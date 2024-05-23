@@ -1,31 +1,34 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import './style.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import axios from 'axios';
-import AddPhoto from '../../components/addPhotos';
-import { setLogout } from '../../redux/reducers/auth';
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import "./style.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import axios from "axios";
+import AddPhoto from "../../components/addPhotos";
+import { setLogout } from "../../redux/reducers/auth";
 
 function Index() {
   const navigate = useNavigate();
-  const { token } = useSelector((state) => ({
-    token: state.auth.token,
-  }));
+  
+  const {token}=useSelector((state)=>{
+    return{
+        token: state.auth.token
+    };
+   
+});
 
-  const navigateHome = () => navigate('/adminPage');
-  const navigateMessage = () => navigate('/');
+  const navigateHome = () => navigate("/adminPage");
+  const navigateMessage = () => navigate("/");
   const dispatch = useDispatch();
 
-  const [categoryTitle, setCategoryTitle] = useState('');
-  const [categoryImage, setCategoryImage] = useState('');
-  const [productTitle, setProductTitle] = useState('');
-  const [productDescription, setProductDescription] = useState('');
-  const [productPrice, setProductPrice] = useState('');
-  const [productImage, setProductImage] = useState('');
+  const [categoryTitle, setCategoryTitle] = useState("");
+  const [categoryImage, setCategoryImage] = useState("");
+  const [productTitle, setProductTitle] = useState("");
+  const [productDescription, setProductDescription] = useState("");
+  const [productPrice, setProductPrice] = useState("");
+  const [productImage, setProductImage] = useState("");
   const [categories, setCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('');
-
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -49,7 +52,8 @@ function Index() {
   const handleCategoryImageChange = (url) => setCategoryImage(url);
 
   const handleProductTitleChange = (e) => setProductTitle(e.target.value);
-  const handleProductDescriptionChange = (e) => setProductDescription(e.target.value);
+  const handleProductDescriptionChange = (e) =>
+    setProductDescription(e.target.value);
   const handleProductPriceChange = (e) => setProductPrice(e.target.value);
   const handleProductImageChange = (url) => setProductImage(url);
   const handleCategoryChange = (e) => setSelectedCategory(e.target.value);
@@ -62,7 +66,10 @@ function Index() {
     };
 
     try {
-      const result = await axios.post("http://localhost:5000/categories/", input);
+      const result = await axios.post(
+        "http://localhost:5000/categories/",
+        input
+      );
       console.log(result.data);
       if (result.data) {
         console.log({
@@ -89,11 +96,15 @@ function Index() {
     };
 
     try {
-      const result = await axios.post("http://localhost:5000/products/", input, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const result = await axios.post(
+        "http://localhost:5000/products/",
+        input,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       if (result.data) {
         console.log({
           success: true,
@@ -111,7 +122,7 @@ function Index() {
   const handleLogout = () => {
     dispatch(setLogout());
     localStorage.clear();
-    navigate('/');
+    navigate("/");
   };
 
   return (
@@ -122,13 +133,22 @@ function Index() {
           <div className="collapse navbar-collapse">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
-                <span className="nav-link" onClick={navigateHome}>Home</span>
+                <span className="nav-link" onClick={navigateHome}>
+                  Home
+                </span>
               </li>
               <li className="nav-item">
-                <span className="nav-link" onClick={navigateMessage}>Messages</span>
+                <span className="nav-link" onClick={navigateMessage}>
+                  Messages
+                </span>
               </li>
               <li className="nav-item">
-                <button className="btn btn-outline-light ml-2" onClick={handleLogout}>Logout</button>
+                <button
+                  className="btn btn-outline-light ml-2"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </button>
               </li>
             </ul>
           </div>
@@ -144,27 +164,31 @@ function Index() {
                 <h5 className="card-title">Create Category</h5>
 
                 <>
-                <AddPhoto onUrlChange={handleCategoryImageChange} />
+                  <AddPhoto onUrlChange={handleCategoryImageChange} />
                 </>
                 <form onSubmit={handleCategorySubmit}>
                   <div className="mb-3">
-                    <label htmlFor="categoryTitle" className="form-label">Category Title</label>
-                    <input 
-                      type="text" 
-                      className="form-control" 
-                      id="categoryTitle" 
-                      value={categoryTitle} 
-                      onChange={handleCategoryTitleChange} 
-                      required 
+                    <label htmlFor="categoryTitle" className="form-label">
+                      Category Title
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="categoryTitle"
+                      value={categoryTitle}
+                      onChange={handleCategoryTitleChange}
+                      required
                     />
                   </div>
                   <div className="mb-3">
-                    <label htmlFor="categoryImage" className="form-label">Category Image</label>
-                    
+                    <label htmlFor="categoryImage" className="form-label">
+                      Category Image
+                    </label>
                   </div>
-                  <button type="submit" className="btn btn-primary">Create Category</button>
+                  <button type="submit" className="btn btn-primary">
+                    Create Category
+                  </button>
                 </form>
-              
               </div>
             </div>
             <div className="card mt-3">
@@ -173,57 +197,70 @@ function Index() {
                 <AddPhoto onUrlChange={handleProductImageChange} />
                 <form onSubmit={handleProductSubmit}>
                   <div className="mb-3">
-                    <label htmlFor="productTitle" className="form-label">Product Title</label>
-                    <input 
-                      type="text" 
-                      className="form-control" 
-                      id="productTitle" 
-                      value={productTitle} 
-                      onChange={handleProductTitleChange} 
-                      required 
+                    <label htmlFor="productTitle" className="form-label">
+                      Product Title
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="productTitle"
+                      value={productTitle}
+                      onChange={handleProductTitleChange}
+                      required
                     />
                   </div>
                   <div className="mb-3">
-                    <label htmlFor="productDescription" className="form-label">Product Description</label>
-                    <textarea 
-                      className="form-control" 
-                      id="productDescription" 
-                      value={productDescription} 
-                      onChange={handleProductDescriptionChange} 
-                      required 
+                    <label htmlFor="productDescription" className="form-label">
+                      Product Description
+                    </label>
+                    <textarea
+                      className="form-control"
+                      id="productDescription"
+                      value={productDescription}
+                      onChange={handleProductDescriptionChange}
+                      required
                     />
                   </div>
                   <div className="mb-3">
-                    <label htmlFor="productPrice" className="form-label">Product Price</label>
-                    <input 
-                      type="number" 
-                      className="form-control" 
-                      id="productPrice" 
-                      value={productPrice} 
-                      onChange={handleProductPriceChange} 
-                      required 
+                    <label htmlFor="productPrice" className="form-label">
+                      Product Price
+                    </label>
+                    <input
+                      type="number"
+                      className="form-control"
+                      id="productPrice"
+                      value={productPrice}
+                      onChange={handleProductPriceChange}
+                      required
                     />
                   </div>
                   <div className="mb-3">
-                    <label htmlFor="categorySelect" className="form-label">Product Category</label>
-                    <select 
-                      className="form-control" 
-                      id="categorySelect" 
-                      value={selectedCategory} 
-                      onChange={handleCategoryChange} 
+                    <label htmlFor="categorySelect" className="form-label">
+                      Product Category
+                    </label>
+                    <select
+                      className="form-control"
+                      id="categorySelect"
+                      value={selectedCategory}
+                      onChange={handleCategoryChange}
                       required
                     >
                       <option value="">Select Category</option>
                       {categories.map((category) => (
-                        <option key={category.id} value={category.id}>{category.title}</option>
+                        <option key={category.id} value={category.id}>
+                          {category.title}
+                        </option>
                       ))}
                     </select>
                   </div>
                   <div className="mb-3">
-                    <label htmlFor="productImage" className="form-label">Product Image</label>
-                   
+                    <label htmlFor="productImage" className="form-label">
+                      Product Image
+                    </label>
                   </div>
-                  <button type="submit" className="btn btn-primary">Create Product</button>
+                  <button type="submit" className="btn btn-primary">
+                    Create Product
+                  </button>
                 </form>
               </div>
             </div>
