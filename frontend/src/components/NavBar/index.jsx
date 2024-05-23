@@ -28,7 +28,7 @@ const menu = (
 const Navbar = () => {
   const { token, isLoggedIn } = useSelector((state) => {
     return {
-      token: state.auth.token,
+      token: localStorage.getItem("token"),
       isLoggedIn: state.auth.isLoggedIn
     };
   });
@@ -44,6 +44,7 @@ const handleLogout = () => {
   };
 
   return (
+    <div id="Navcon">
     <nav className="navBBar navbar navbar-expand-lg navbar-dark bg-dark">
       <NavLink className="navBar_firstItem navbar-brand" to="/">INFINITE HORIZON</NavLink>
       <button className=" navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,7 +72,7 @@ const handleLogout = () => {
               </svg>
             </NavLink>
           </li>
-          { isLoggedIn? <li className="nav-item">
+          { token? <li className="nav-item">
           <button className="btn btn-outline-light ml-2" onClick={handleLogout}>Logout</button>
         </li>   :
           <li className="nav-item">
@@ -87,6 +88,7 @@ const handleLogout = () => {
         </ul>
       </div>
     </nav>
+    </div>
   );
 };
 

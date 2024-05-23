@@ -1,3 +1,6 @@
+#Navcon{
+  width: 100%;
+}
 .navBBar {
     display: flex;
     justify-content: space-between;

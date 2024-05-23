@@ -94,6 +94,9 @@ return (
                 <p>logout first</p>
               )
         }
+   {status
+          ?  <div className="SuccessMessage">{message}</div>
+          :<div className="ErrorMessage">{message}</div>}
     </div>
     </>
 )

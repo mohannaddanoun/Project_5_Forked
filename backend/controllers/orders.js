@@ -2,7 +2,6 @@ const { pool } = require("../models/db");
 let orderID;
 //This function add product to cart
 const addtoOrders = (req, res) => {
-  const cart_id = req.params.id;
   const user_id = req.token.userId;
 
   pool
@@ -31,19 +30,17 @@ const addtoOrders = (req, res) => {
       );
     });
 };
-
+console.log(orderID);
 
 const addOrderToCartOrders = (req, res) => {
-    const cart_id = req.body;
-    
+    const {cart_id} = req.body;
+    console.log("cart id : ", cart_id);
     pool
       .query(
-        `INSERT INTO cart_order (cart_id,order_id) VALUES ($1,$2) RETURNING *;
-      `,
+        `INSERT INTO cart_order (cart_id,order_id) VALUES ($1,$2) RETURNING * `,
         [cart_id,orderID]
       )
       .then((result) => {
-          orderID=result.rows[0].id
           console.log(orderID);
         res.status(201).json({
           success: true,
