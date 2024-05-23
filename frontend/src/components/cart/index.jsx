@@ -10,7 +10,7 @@ const CartComponent = () => {
     const dispatch =useDispatch();
     const {token}=useSelector((state)=>{
         return{
-            token: state.auth.token
+            token: state.auth.token || localStorage.getItem("token")
         };
        
     });
@@ -86,6 +86,7 @@ const DeleteProductById = async ()=>{
 
 useEffect(()=>{
     getAllProductsByUserId()
+    console.log(token);
 },[open])
   return (
     <div
@@ -101,8 +102,10 @@ useEffect(()=>{
         backgroundColor: "ButtonShadow",
         padding: "10px",
     }}
-  >
-    {cart.length === 0 ? (
+  >{token===null ?(
+    <h1>log in first</h1>
+  ):
+   (<>{cart.length === 0 ? (
       <h1>no products yet</h1>
     ) : (
       cart.map((product, index) => {
@@ -149,8 +152,8 @@ useEffect(()=>{
         
         );
       })
-    )}
-   
+    )}</>
+    ) }
       {open && <><Modal
         open={open}
         onOk={handleClose}

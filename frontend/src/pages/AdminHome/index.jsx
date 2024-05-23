@@ -9,16 +9,13 @@ import { setLogout } from "../../redux/reducers/auth";
 
 function Index() {
   const navigate = useNavigate();
-  
-  const {token}=useSelector((state)=>{
-    return{
-        token: state.auth.token
-    };
-   
-});
+  const { token } = useSelector((state) => ({
+    token: state.auth.token || localStorage.getItem("token")
+  }));
 
-  const navigateHome = () => navigate("/adminPage");
-  const navigateMessage = () => navigate("/");
+  const navigateHome = () => navigate('/adminPage');
+  const navigateMessage = () => navigate('/message');
+
   const dispatch = useDispatch();
 
   const [categoryTitle, setCategoryTitle] = useState("");

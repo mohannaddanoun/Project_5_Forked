@@ -10,6 +10,7 @@ import { Divider } from "antd";
 import { Carousel } from "antd";
 
 const Home = () => {
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const contentStyle = {

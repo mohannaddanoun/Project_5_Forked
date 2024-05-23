@@ -4,7 +4,7 @@ import Home from "../pages/Home"
 import About from "../pages/About"
 import Cart from "../pages/Cart"
 import NotFound from "../pages/NotFound"
-
+import MessageAdmin from "../pages/MessageAdmin"
 import Register from "../components/Register"
 import Products from "../components/products/Products"
 import OneProduct from "../components/OneProduct/oneProduct"
@@ -62,7 +62,12 @@ export const router = createBrowserRouter([
 },
 {
     path:"/adminPage",
-    element:<AdminHome/>
+    element:<AdminHome/>,
+
+},
+{
+    path:"/message",
+    element:<MessageAdmin/>
 },
 {
     path:"*",

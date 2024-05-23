@@ -7,18 +7,19 @@ import { setLogin,
     setLogout,} from "../../redux/reducers/auth/index"
     import { Button, Modal,message } from 'antd';
 
+
 //===============================================================
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch =useDispatch();
-
   const [email, setEmail] = useState("");
   const [message2, setMessage2] = useState("");
   const [password, setPassword] = useState("");
   const [status, setStatus] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
   const [isModalOpen, setIsModalOpen] = useState(false);
+
 const {token,userid,isLoggedIn}=useSelector((state)=>{
   return{
 token:state.auth.token
@@ -47,16 +48,18 @@ isLoggedIn:state.auth.isLoggedIn
       console.log(result.data);
         if(result.data.role === 1){
           navigate('/adminPage');
+        }else if(result.data.role && result.data.role !==1){
+          navigate("/")
         }
 
       if (result.data) {
-        console.log(result);
-        
+        console.log(result);        
         setMessage2(result.data.message);
        localStorage.setItem("token", result.data.token);
        localStorage.setItem("userId", result.data.userId);
        localStorage.setItem("isLoggedin", true);
        dispatch(setLogin(result.data.token),setUserId(result.data.userId))
+
 
        setTimeout(() => {
         messageApi.open({
@@ -76,17 +79,18 @@ isLoggedIn:state.auth.isLoggedIn
             duration: 3,
           });
         }, 500);
+
     }
-    
+    console.log(message);
   };
 
- 
 
   return (
     <>
       <div className="Form">
       {contextHolder}
         <p className="Title">Login:</p>
+        <div><p>${status}</p> </div>
         <form onSubmit={login}>
           <br />
 
@@ -111,10 +115,11 @@ isLoggedIn:state.auth.isLoggedIn
           </button>
         </form>
 
-        
+
       </div>
+      
     </>
-    
+
   );
 };
 
