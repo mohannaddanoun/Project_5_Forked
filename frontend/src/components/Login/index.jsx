@@ -5,19 +5,21 @@ import { useDispatch,useSelector } from "react-redux";
 import { setLogin,
     setUserId,
     setLogout,} from "../../redux/reducers/auth/index"
-import { Alert } from "antd";
-    
+    import { Button, Modal,message } from 'antd';
+
 
 //===============================================================
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch =useDispatch();
-
   const [email, setEmail] = useState("");
-  const [message, setMessage] = useState();
+  const [message2, setMessage2] = useState("");
   const [password, setPassword] = useState("");
-  const [status, setStatus] = useState(true);
+  const [status, setStatus] = useState(false);
+  const [messageApi, contextHolder] = message.useMessage();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
 const {token,userid,isLoggedIn}=useSelector((state)=>{
   return{
 token:state.auth.token
@@ -27,10 +29,13 @@ isLoggedIn:state.auth.isLoggedIn
 })
 
 
-  console.log(token);
-  console.log(userid);
-  console.log(isLoggedIn);
   const login = async (e) => {
+
+    messageApi.open({
+      type: "loading",
+      content: "Loading...",
+      duration: 0.5,
+    });
    
     console.log(password);
     e.preventDefault();
@@ -48,28 +53,42 @@ isLoggedIn:state.auth.isLoggedIn
         }
 
       if (result.data) {
-        console.log(result.data);
-        setMessage("success");
+        console.log(result);        
+        setMessage2(result.data.message);
        localStorage.setItem("token", result.data.token);
        localStorage.setItem("userId", result.data.userId);
        localStorage.setItem("isLoggedin", true);
-        saveToken(result.data.token, result.data.userId);
        dispatch(setLogin(result.data.token),setUserId(result.data.userId))
-       setStatus(true)
+
+
+       setTimeout(() => {
+        messageApi.open({
+          type: "success",
+          content: result.data.message,
+          duration: 3,
+        });
+      }, 500);
       } else throw Error;
     } catch (error) {
       console.log(error);
-        setMessage(error.response.data.message);
-        setStatus(false)
+        setMessage2(error.response.data.message);
+        setTimeout(() => {
+          messageApi.open({
+            type: "error",
+            content: error.response.data.message,
+            duration: 3,
+          });
+        }, 500);
+
     }
     console.log(message);
   };
 
 
-
   return (
     <>
       <div className="Form">
+      {contextHolder}
         <p className="Title">Login:</p>
         <div><p>${status}</p> </div>
         <form onSubmit={login}>
@@ -96,13 +115,7 @@ isLoggedIn:state.auth.isLoggedIn
           </button>
         </form>
 
-        {status  ?  <div className="SuccessMessage">{message}</div>
-          :  <Alert
-          message="Error"
-          description={message}
-          type="error"
-          showIcon
-        />}
+
       </div>
       
     </>
@@ -111,4 +124,3 @@ isLoggedIn:state.auth.isLoggedIn
 };
 
 export default Login;
-
