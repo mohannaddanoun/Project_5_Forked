@@ -4,12 +4,13 @@ import Home from "../pages/Home"
 import About from "../pages/About"
 import Cart from "../pages/Cart"
 import NotFound from "../pages/NotFound"
-
+import MessageAdmin from "../pages/MessageAdmin"
 import Register from "../components/Register"
 import Products from "../components/products/Products"
 import OneProduct from "../components/OneProduct/oneProduct"
 import Login from "../components/Login"
 import AdminHome from "../pages/AdminHome"
+import { ContactUs } from "../pages/Contact Us"
 
 export const router = createBrowserRouter([
 {
@@ -26,12 +27,16 @@ export const router = createBrowserRouter([
            
         },
         {
-            path:"about",
-            element:<About/>
-        },
-        {
             path:"cart",
             element: <Cart/>
+        },
+        {
+            path:"contactUs",
+            element: <ContactUs/>
+        },
+        {
+            path:"about",
+            element:<About/>
         },
         {
 
@@ -57,7 +62,12 @@ export const router = createBrowserRouter([
 },
 {
     path:"/adminPage",
-    element:<AdminHome/>
+    element:<AdminHome/>,
+
+},
+{
+    path:"/message",
+    element:<MessageAdmin/>
 },
 {
     path:"*",

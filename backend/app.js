@@ -18,16 +18,19 @@ const productsRouter = require("./routes/products");
 const commentsRouter=require("./routes/comments")
 const cartRouter = require("./routes/cart");
 const ordersRouter = require("./routes/orders");
+const messageRouter = require("./routes/message");
 
 
 // Routes Middleware
 app.use("/users", userRouter);
 app.use("/roles", roleRouter);
 app.use("/categories", categoriesRouter);
-app.use("/products",productsRouter)
-app.use("/comments",commentsRouter)
+app.use("/products",productsRouter);
+app.use("/comments",commentsRouter);
 app.use("/cart",cartRouter);
 app.use("/orders",ordersRouter)
+app.use("/messages",messageRouter);
+
 
 
 // Handles any other endpoints [unassigned - endpoints]
