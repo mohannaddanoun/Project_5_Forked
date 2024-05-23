@@ -92,14 +92,14 @@ DROP TABLE cart;
 
 CREATE TABLE cart
 (
-    id SERIAL NOT NULL,
+   cart_id SERIAL NOT NULL,
     user_id INT,
     product_id INT,
     itemCount INT,
     is_deleted SMALLINT DEFAULT 0,
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (product_id) REFERENCES products(id),
-    PRIMARY KEY (id)
+    PRIMARY KEY (cart_id)
 );
 
 CREATE TABLE orders
@@ -116,7 +116,7 @@ CREATE TABLE cart_order
     id SERIAL NOT NULL,
     cart_id INT,
     order_id INT,
-    FOREIGN KEY (cart_id) REFERENCES cart(id),
+    FOREIGN KEY (cart_id) REFERENCES cart(cart_id),
     FOREIGN KEY (order_id) REFERENCES orders(id),
     PRIMARY KEY (id)
 );

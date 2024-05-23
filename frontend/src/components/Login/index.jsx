@@ -5,7 +5,8 @@ import { useDispatch,useSelector } from "react-redux";
 import { setLogin,
     setUserId,
     setLogout,} from "../../redux/reducers/auth/index"
-    import { Button, Modal } from 'antd';
+import { Alert } from "antd";
+    
 
 //===============================================================
 
@@ -14,10 +15,9 @@ const Login = () => {
   const dispatch =useDispatch();
 
   const [email, setEmail] = useState("");
-  const [message, setMessage] = useState(false);
+  const [message, setMessage] = useState();
   const [password, setPassword] = useState("");
-  const [status, setStatus] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [status, setStatus] = useState(true);
 const {token,userid,isLoggedIn}=useSelector((state)=>{
   return{
 token:state.auth.token
@@ -49,7 +49,7 @@ isLoggedIn:state.auth.isLoggedIn
 
       if (result.data) {
         console.log(result.data);
-        setMessage("");
+        setMessage("success");
        localStorage.setItem("token", result.data.token);
        localStorage.setItem("userId", result.data.userId);
        localStorage.setItem("isLoggedin", true);
@@ -58,22 +58,14 @@ isLoggedIn:state.auth.isLoggedIn
        setStatus(true)
       } else throw Error;
     } catch (error) {
-      console.log(error.response.data.success);
-        setMessage(error.response.data.success);
+      console.log(error);
+        setMessage(error.response.data.message);
         setStatus(false)
     }
-    
+    console.log(message);
   };
 
-  //===============================================================
 
-//   useEffect(() => {
-//     if (isLoggedIn) {
-//       history("/dashboard");
-//     }
-//   });
-
-  //===============================================================
 
   return (
     <>
@@ -104,38 +96,17 @@ isLoggedIn:state.auth.isLoggedIn
           </button>
         </form>
 
-        {status
-          ?  <div className="SuccessMessage">{message}</div>
-          :<div className="ErrorMessage">{message}</div>}
+        {status  ?  <div className="SuccessMessage">{message}</div>
+          :  <Alert
+          message="Error"
+          description={message}
+          type="error"
+          showIcon
+        />}
       </div>
+      
     </>
-    /*import React, { useState } from 'react';
 
-const App = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
-  return (
-    <>
-      <Button type="primary" onClick={showModal}>
-        Open Modal
-      </Button>
-      <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-      </Modal>
-    </>
-  );
-};
-export default App; */
   );
 };
 
