@@ -14,7 +14,7 @@ const Login = () => {
   const dispatch =useDispatch();
 
   const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState(false);
   const [password, setPassword] = useState("");
   const [status, setStatus] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -43,6 +43,8 @@ isLoggedIn:state.auth.isLoggedIn
       console.log(result.data);
         if(result.data.role === 1){
           navigate('/adminPage');
+        }else if(result.data.role && result.data.role !==1){
+          navigate("/")
         }
 
       if (result.data) {
@@ -53,9 +55,12 @@ isLoggedIn:state.auth.isLoggedIn
        localStorage.setItem("isLoggedin", true);
         saveToken(result.data.token, result.data.userId);
        dispatch(setLogin(result.data.token),setUserId(result.data.userId))
+       setStatus(true)
       } else throw Error;
     } catch (error) {
-        setMessage(error.response);
+      console.log(error.response.data.success);
+        setMessage(error.response.data.success);
+        setStatus(false)
     }
     
   };
@@ -74,6 +79,7 @@ isLoggedIn:state.auth.isLoggedIn
     <>
       <div className="Form">
         <p className="Title">Login:</p>
+        <div><p>${status}</p> </div>
         <form onSubmit={login}>
           <br />
 
@@ -99,8 +105,8 @@ isLoggedIn:state.auth.isLoggedIn
         </form>
 
         {status
-          ? message && <div className="SuccessMessage">{message}</div>
-          : message && <div className="ErrorMessage">{message}</div>}
+          ?  <div className="SuccessMessage">{message}</div>
+          :<div className="ErrorMessage">{message}</div>}
       </div>
     </>
     /*import React, { useState } from 'react';

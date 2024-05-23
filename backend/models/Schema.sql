@@ -102,6 +102,24 @@ CREATE TABLE cart
     PRIMARY KEY (id)
 );
 
+CREATE TABLE orders
+(
+    id SERIAL NOT NULL,
+    user_id INT,
+    is_deleted SMALLINT DEFAULT 0,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE cart_order
+(
+    id SERIAL NOT NULL,
+    cart_id INT,
+    order_id INT,
+    FOREIGN KEY (cart_id) REFERENCES cart(id),
+    FOREIGN KEY (order_id) REFERENCES orders(id),
+    PRIMARY KEY (id)
+);
 
 DROP TABLE messages;
 

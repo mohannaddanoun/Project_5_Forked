@@ -10,7 +10,7 @@ import { setLogout } from '../../redux/reducers/auth';
 function Index() {
   const navigate = useNavigate();
   const { token } = useSelector((state) => ({
-    token: state.auth.token,
+    token: state.auth.token || localStorage.getItem("token")
   }));
 
   const navigateHome = () => navigate('/adminPage');
