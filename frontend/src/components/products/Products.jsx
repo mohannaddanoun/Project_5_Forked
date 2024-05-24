@@ -38,50 +38,40 @@ const Products = () => {
 
   return (
     <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100%",
-        marginTop: 100,
-        padding: "50px",
-      }}
+    className="products-container"
     >
       {products.length === 0 ? (
         <h1>no products yet</h1>
       ) : (
         products.map((oneProduct, index) => {
           return (
-            <div
+            <div className="ProductDiv"
+            key={index}
+            onClick={() => {
+              navigate(`/product/${oneProduct.id}`);
+            }}
+           >
+            <Card
+              hoverable
               style={{
-                alignItems: "center",
-                width: "25%",
-                justifyContent: "center",
-                marginRight: "10px",
+                maxWidth: 240,
               }}
-              key={index}
-              onClick={() => {
-                navigate(`/product/${oneProduct.id}`);
-              }}>
-            
-              <Card
-                style={{
-                  width: 300,
-                  padding: 20,
-                }}
-                cover={
-                  <img
-                    
-                    src={oneProduct.image}
-                  />
-                }
-              >
-                <Meta
-                  title={oneProduct.title}
-                  description={oneProduct.description}
+              cover={
+                <img
+                  style={{ minHeight: 160, maxHeight: 140 }}
+                  src={oneProduct.image}
+                  onClick={() => {
+                    navigate(`/${oneCategory.id}`);
+                  }}
                 />
-              </Card>
-            </div>
+              }
+            >
+              <Meta title={oneProduct.title} />
+              
+
+            </Card>
+
+          </div>
           );
         })
       )}
