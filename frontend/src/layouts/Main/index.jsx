@@ -4,7 +4,7 @@ import Footer from "../../components/Footer";
 
 export default function Main() {
   return (
-    <div className="root-layout" style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+    <div className="root-layout" style={{ display: "flex", flexDirection: "column", minHeight: "100vh", maxWidth:"auto" }}>
       <header>
         <Navbar />
       </header>
