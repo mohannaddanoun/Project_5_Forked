@@ -1,11 +1,9 @@
-import React, { useContext, useState, useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import React, {  useState } from "react";
+import {  useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch,useSelector } from "react-redux";
-import { setLogin,
-    setUserId,
-    setLogout,} from "../../redux/reducers/auth/index"
-    import { Button, Modal,message } from 'antd';
+import { setLogin,setUserId,} from "../../redux/reducers/auth/index"
+    import { message } from 'antd';
 
 
 //===============================================================
@@ -37,7 +35,7 @@ isLoggedIn:state.auth.isLoggedIn
       duration: 0.5,
     });
    
-    console.log(password);
+    
     e.preventDefault();
     try {
         const input = {

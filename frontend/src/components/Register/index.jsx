@@ -1,9 +1,12 @@
-import React,{useContext,useState} from "react";
+import React,{useState} from "react";
 import axios from "axios";
-import { useDispatch,useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { message } from 'antd';
+
 
 
 const Register =()=>{
+
 const {isLoggedIn}=useSelector((state)=>{
     return {isLoggedIn:state.auth.isLoggedIn}
 })
@@ -13,17 +16,18 @@ const [userName, setUserName] = useState("")
 const [country, setCountry] = useState("")
 const [email, setEmail] = useState("")
 const [password, setPassword] = useState("")
-const [message, setMessage] = useState("");
+const [message2, setMessage2] = useState("");
 const [status, setStatus] = useState(false);
+const [messageApi, contextHolder] = message.useMessage();
 const register = async (e)=>{
-    console.log(firstName,
-        lastName,
-        userName,
-        country,
-        email,
-        password,
-        message,
-        status);
+
+  messageApi.open({
+    type: "loading",
+    content: "Loading...",
+    duration: 0.5,
+  });
+
+  
     e.preventDefault();
     try{
         const input ={firstName,
@@ -36,17 +40,31 @@ const register = async (e)=>{
 
         if(result.data){
             setStatus(true);
-            setMessage(result.data.message)
-            console.log(1);
+            setMessage2(result.data.message)
+            setTimeout(() => {
+              messageApi.open({
+                type: "success",
+                content: result.data.message,
+                duration: 3,
+              });
+            }, 500);
         }else throw Error;
     }catch(error){
         setStatus(false);
-        setMessage(error.response.data.message)
+        setMessage2(error.response.data.message)
+        setTimeout(() => {
+          messageApi.open({
+            type: "error",
+            content: error.response.data.message,
+            duration: 3,
+          });
+        }, 500);
     }
 }
 return (
-    <>
+    
     <div className="Form">
+      {contextHolder}
         {!isLoggedIn ? (
             <><p className="Title">Register:</p>
             <form onSubmit={register}>
@@ -94,11 +112,9 @@ return (
                 <p>logout first</p>
               )
         }
-   {status
-          ?  <div className="SuccessMessage">{message}</div>
-          :<div className="ErrorMessage">{message}</div>}
+   
     </div>
-    </>
+    
 )
 
 }
