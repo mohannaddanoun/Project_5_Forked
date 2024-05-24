@@ -1,0 +1,39 @@
+body{
+  
+}
+.log{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(https://img.freepik.com/premium-photo/toy-shopping-cart-with-boxes-credit-card-with-copy-space_339191-197.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height:calc(100vh - 116px) ;
+
+}
+
+
+#Login{
+    width: 400px;
+    background: #ffffff3f;
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.login-button{
+    width: 100%;
+    margin-top: 15px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    background: linear-gradient(to right ,#0856ff,#00ffe0);
+
+
+}
+.login-button:hover{
+    background: linear-gradient(to top ,#0856ff,#00ffe0);
+}

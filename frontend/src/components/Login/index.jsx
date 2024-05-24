@@ -4,7 +4,7 @@ import axios from "axios";
 import { useDispatch,useSelector } from "react-redux";
 import { setLogin,setUserId,} from "../../redux/reducers/auth/index"
     import { message } from 'antd';
-
+import "./style.css"
 
 //===============================================================
 
@@ -84,27 +84,27 @@ isLoggedIn:state.auth.isLoggedIn
 
 
   return (
-    <>
-      <div className="Form">
+    <div className="log">
+      <div className="Form" id="Login">
       {contextHolder}
-        <p className="Title">Login:</p>
-        <div><p>${status}</p> </div>
+        <h2 className="Title">Login:</h2>
         <form onSubmit={login}>
           <br />
-
+          <h5>User Email</h5>
           <input
             type="email"
             placeholder="Email"
             onChange={(e) => setEmail(e.target.value)}
           />
           <br />
+          <h5>Password</h5>
           <input
             type="password"
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
           />
           <br />
-          <button
+          <button className="login-button"
             onClick={(e) => {
               login(e);
             }}
@@ -116,7 +116,7 @@ isLoggedIn:state.auth.isLoggedIn
 
       </div>
       
-    </>
+    </div>
 
   );
 };
