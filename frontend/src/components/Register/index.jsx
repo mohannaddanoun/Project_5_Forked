@@ -2,7 +2,7 @@ import React,{useState} from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { message } from 'antd';
-
+import "./style.css"
 
 
 const Register =()=>{
@@ -62,11 +62,11 @@ const register = async (e)=>{
     }
 }
 return (
-    
-    <div className="Form">
+    <div className="register">
+    <div className="Form" id="Register">
       {contextHolder}
         {!isLoggedIn ? (
-            <><p className="Title">Register:</p>
+            <><h2 className="Title">Sign up:</h2>
             <form onSubmit={register}>
               <br />
               <input
@@ -105,7 +105,7 @@ return (
                 onChange={(e) => setPassword(e.target.value)}
               />
               <br />
-              <button>Register</button>
+              <button className="register-button">Register</button>
               <br />
             </form>
             </>):(
@@ -114,7 +114,7 @@ return (
         }
    
     </div>
-    
+    </div>
 )
 
 }
