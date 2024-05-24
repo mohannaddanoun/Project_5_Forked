@@ -8,9 +8,9 @@ import { Card } from "antd";
 const { Meta } = Card;
 import { Divider } from "antd";
 import { Carousel } from "antd";
+import '../Home/Home.css'
 
 const Home = () => {
-  
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const contentStyle = {
@@ -65,7 +65,7 @@ const Home = () => {
 
   return (
     <div className="mainDiv">
-      <Carousel autoplay>
+      {/* <Carousel autoplay>
         <div>
           <img
             style={contentStyle}
@@ -90,19 +90,18 @@ const Home = () => {
             src="https://t3.ftcdn.net/jpg/03/08/09/84/360_F_308098498_raQvWUt7e7dPnRl7xvxTMqJL1wfaYR3G.jpg"
           />
         </div>
-      </Carousel>
+      </Carousel> */}
+
+      <section id="hero">
+        <h4>Trade-in-offer</h4>
+        <h2>Super value deals</h2>
+        <h1>on all products</h1>
+        <p>Save more with coupons & up to 70% off!</p>
+
+      </section>
 
       <Divider>Categories</Divider>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
-          gridGap: "10px",
-          margin: 20,
-          backgroundColor: "ButtonShadow",
-          padding: "10px",
-        }}
-      >
+      <div className="category-container">
         {categories.length &&
           categories.map((oneCategory, index) => {
             return (
@@ -130,31 +129,38 @@ const Home = () => {
       </div>
       <Divider>Our Products</Divider>
 
-      <div
-        className="productsDiv"
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
-          gridGap: "10px",
-          margin: 20,
-          backgroundColor: "ButtonShadow",
-          padding: "10px",
-        }}
-      >
+      <div className="products-container">
         {products.lenght === 0 ? (
           <h1>No products yet</h1>
         ) : (
           products.map((oneProduct, index) => {
             return (
-              <div className="oneProductDiv" key={index}
-              onClick={() => {
-                navigate(`/product/${oneProduct.id}`);
-              }}>
-                <img
-                 style={{ minHeight: 160, maxHeight: 140 }}
-                 src={oneProduct.image} />
-                <h3>{oneProduct.title}</h3>
-                <h4>{oneProduct.price}</h4>
+              <div className="ProductDiv"
+                key={index}
+                onClick={() => {
+                  navigate(`/product/${oneProduct.id}`);
+                }}
+               >
+                <Card
+                  hoverable
+                  style={{
+                    maxWidth: 240,
+                  }}
+                  cover={
+                    <img
+                      style={{ minHeight: 160, maxHeight: 140 }}
+                      src={oneProduct.image}
+                      onClick={() => {
+                        navigate(`/${oneCategory.id}`);
+                      }}
+                    />
+                  }
+                >
+                  <Meta title={oneProduct.title} />
+                  
+
+                </Card>
+
               </div>
             );
           })
