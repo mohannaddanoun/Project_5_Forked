@@ -1,8 +1,8 @@
-.log{
+.register{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url(https://img.freepik.com/premium-photo/toy-shopping-cart-with-boxes-credit-card-with-copy-space_339191-197.jpg);
+    background-image: url(https://i0.wp.com/strikesocial.com/wp-content/uploads/2018/07/STRIKE_BLOG_ADVERTISE-ECOMMERCE-WEBSITE-1.jpg?fit=900%2C550&ssl=1);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -11,14 +11,14 @@
 }
 
 
-#Login{
+#Register{
     width: 400px;
     background: #ffffff3f;
     border-radius: 8px;
     padding: 25px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
-.login-button{
+.register-button{
     width: 100%;
     margin-top: 15px;
     border-radius: 10px;
@@ -27,10 +27,14 @@
     font-size: 20px;
     font-weight: 500;
     cursor: pointer;
-    background: linear-gradient(to right ,#0856ff,#00ffe0);
+    background: linear-gradient(to right ,#ffe608,#ff5e00);
 
 
 }
-.login-button:hover{
-    background: linear-gradient(to top ,#0856ff,#00ffe0);
+.register-button:hover{
+    background: linear-gradient(to top ,#ffe608,#ff5e00);
+}
+input{
+    border-radius: 5px;
+    margin: 5px;
 }
