@@ -1,0 +1,35 @@
+.all-products{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+ 
+}
+.product{
+    overflow: hidden;
+    background: #bbeadd;
+    color: #21201e;
+    text-align: center;
+    width: 240px;
+    height: 340px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    margin:20px;
+    cursor: pointer;
+}
+.product:hover img{
+    scale: 1.05;
+
+} 
+.product:hover{
+    box-shadow: 5px 15px 25px #d41717 ;
+}
+.product img{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}

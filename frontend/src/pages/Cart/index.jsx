@@ -1,11 +1,14 @@
 import React from 'react'
 import CartComponent from '../../components/cart/index'
 import Check from '../../components/check'
+import "./style.css"
 
 function Cart() {
   return (
-    <div><CartComponent/>
-<Check/>
+    <div className='cart'>
+      <Check className="checkout" />
+      <CartComponent/>
+
     </div>
 
   )
