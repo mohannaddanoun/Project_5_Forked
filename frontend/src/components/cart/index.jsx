@@ -4,6 +4,7 @@ import { useDispatch,useSelector } from 'react-redux'
 import { setCart} from "../../redux/reducers/cart/index"
 import {Card,Modal,Button} from 'antd'
 const {Meta}=Card
+import "./style.css"
 
 // import auth from "../../redux/reducers/auth/index"
 const CartComponent = () => {
@@ -27,8 +28,8 @@ const CartComponent = () => {
     const [img, setImg] = useState();
     const [id, setId] = useState();
     const [price, setPrice] = useState();
-    const [number, setNumber] = useState(1)
-    const [description, setDescription] = useState();
+    const [number, setNumber] = useState("1")
+    const [description, setDescription] = useState(1);
     const [delOpen, setDelOpen] = useState(false);
     const handleClose = () => {
       setOpen(false);
@@ -90,18 +91,8 @@ useEffect(()=>{
 },[open])
   return (
     <div
-    style={{
-      height: "100%",
-      marginTop: 100,
-      padding: "50px",
-  
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
-        gridGap: "10px",
-        margin: 20,
-        backgroundColor: "ButtonShadow",
-        padding: "10px",
-    }}
+    
+    className='all-products'
   >{token===null ?(
     <h1>log in first</h1>
   ):
@@ -111,16 +102,11 @@ useEffect(()=>{
       cart.map((product, index) => {
   
         return (
-         <div
-            style={{
-              alignItems: "center",
-              width: "25%",
-              justifyContent: "center",
-              marginRight: "10px",
-            }}
+         <div 
+           
             key={index}
           >
-            <Card
+            <Card className='product'
               onClick={(e) => {
                 handleClickOpen();
                 setName(product.title);
@@ -130,10 +116,7 @@ useEffect(()=>{
                 setDescription(product.itemcount)
                 console.log(product.itemcount);
               }}
-              style={{
-                width: 300,
-                padding: 20,
-              }}
+             
 
               cover={
                 <img
@@ -144,7 +127,7 @@ useEffect(()=>{
             >
               <Meta
                 title={product.title}
-                description={product.description}
+                description= {product.description}
               />
             </Card>
           </div>

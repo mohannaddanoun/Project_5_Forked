@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setOneProduct } from "../../redux/reducers/oneProduct/index";
-import { addProduct, setCart } from "../../redux/reducers/cart/index";
 import { useParams, useNavigate } from "react-router-dom";
+import "./OneProduct.css"
 
 const OneProduct = () => {
     const dispatch = useDispatch();

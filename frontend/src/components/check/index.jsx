@@ -2,6 +2,7 @@ import { Button } from 'antd'
 import axios from 'axios';
 import React from 'react'
 import { useSelector } from 'react-redux'
+import "./style.css"
 
 
 const Check =() => {
@@ -48,7 +49,7 @@ console.log(err);
     }
   return (
     <div>
-      <Button onClick={log}>checkout </Button>
+      <Button className='checkout' onClick={log}>checkout </Button>
     </div>
   )
 }
