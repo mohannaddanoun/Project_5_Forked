@@ -7,7 +7,7 @@ import {
   UserAddOutlined,
 } from '@ant-design/icons';
 import { setLogout } from "../../redux/reducers/auth";
-//import logo from "http://res.cloudinary.com/dpsgompln/image/upload/v1716681711/l8dmqyvq7l9fair0lzy1.png"
+
 
 const menuItems = [
   {
@@ -57,7 +57,7 @@ const handleLogout = () => {
             <NavLink className="nav-link" activeClassName="active" exact to="/">Home</NavLink>
           </li>
           <li className="nav-item">
-            <NavLink className="nav-link" activeClassName="active" to="/category">Category</NavLink>
+            <NavLink className="nav-link" activeClassName="active" to="/shop">Shop</NavLink>
           </li>
           <li className="nav-item">
             <NavLink className="nav-link" activeClassName="active" to="/about">About</NavLink>

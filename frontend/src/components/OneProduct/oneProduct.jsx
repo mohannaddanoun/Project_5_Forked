@@ -101,8 +101,11 @@ const OneProduct = () => {
                             <img src={Product.image} alt={Product.title} />
                             <div className="productDetails">
                                 <h3>{Product.title}</h3>
+                                <Divider >Description</Divider>
                                 <h4>{Product.description}</h4>
+                                <Divider>Price</Divider>
                                 <p>${Product.price}</p>
+                                <Divider></Divider>
                                 <button onClick={AddToCart}>Add to Cart</button>
                             </div>
                         </div>

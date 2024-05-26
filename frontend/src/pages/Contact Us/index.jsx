@@ -44,7 +44,7 @@ console.log(token);
   };
 
   return (
-    <div className="container mt-5">
+    <div style={{backgroundColor:"#ffe4e1" , border:"solid black" ,borderRadius:5 ,marginBottom:50}} className="container mt-5">
       <h2>Contact Us</h2>
       <form onSubmit={handleSubmitButton} className="mt-4">
         <div className="mb-3">
