@@ -7,6 +7,7 @@ import {
   UserAddOutlined,
 } from '@ant-design/icons';
 import { setLogout } from "../../redux/reducers/auth";
+//import logo from "http://res.cloudinary.com/dpsgompln/image/upload/v1716681711/l8dmqyvq7l9fair0lzy1.png"
 
 const menuItems = [
   {
@@ -46,7 +47,7 @@ const handleLogout = () => {
   return (
     <div id="Navcon">
     <nav className="navBBar navbar navbar-expand-lg navbar-dark bg-dark">
-      <NavLink className="navBar_firstItem navbar-brand" to="/">INFINITE HORIZON</NavLink>
+    <img  type="image/png" src="http://res.cloudinary.com/dpsgompln/image/upload/v1716687582/yulrgau9rb4g4w926fmt.png"  />
       <button className=" navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>
