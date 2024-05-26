@@ -123,10 +123,10 @@ function Index() {
   };
 
   return (
-    <div className="d-flex flex-column min-vh-100">
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark w-100">
+    <div className="bg-body-tertiary d-flex flex-column min-vh-100">
+      <nav className="navbar navbar-expand-lg bg-info w-100">
         <div className="container">
-          <span className="navbar-brand">Navbar</span>
+          <span className="navbar-brand ">Admin Dashbord</span>
           <div className="collapse navbar-collapse">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
@@ -139,7 +139,7 @@ function Index() {
                   Messages
                 </span>
               </li>
-              <li className="nav-item">
+              <li className="logout-style nav-item logout">
                 <button
                   className="btn btn-outline-light ml-2"
                   onClick={handleLogout}
@@ -265,8 +265,8 @@ function Index() {
         </div>
       </div>
 
-      <footer className="bg-dark text-white text-center py-3 fixed-bottom w-100">
-        Infinite Horizon
+      <footer className="bg-secondary text-white text-center py-3 fixed-bottom w-100">
+       &#169; Infinite Horizon
       </footer>
     </div>
   );

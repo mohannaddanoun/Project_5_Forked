@@ -1,9 +1,21 @@
 .navBar {
-    background-color: #333;
+    background-color: #1a4649;
     color: #fff;
     padding: 10px;
+    
   }
   
 .body_admin{
     color: #fff;
+    
+}
+
+.container{
+  font-weight: bold;
+
+}
+
+.logout-style{
+  position: relative;
+  left: 400px;
 }

@@ -73,6 +73,7 @@ const Home = () => {
                   hoverable
                   style={{
                     maxWidth: 240,
+                    marginBottom:20
                   }}
                   cover={
                     <img
@@ -109,14 +110,13 @@ const Home = () => {
                   hoverable
                   style={{
                     maxWidth: 240,
+                    margin:7
                   }}
                   cover={
                     <img
                       style={{ minHeight: 160, maxHeight: 140 }}
                       src={oneProduct.image}
-                      onClick={() => {
-                        navigate(`/${oneCategory.id}`);
-                      }}
+                      
                     />
                   }
                 >
