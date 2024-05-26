@@ -87,7 +87,7 @@ isLoggedIn:state.auth.isLoggedIn
     <div className="log">
       <div className="Form" id="Login">
       {contextHolder}
-        <h2 className="Title">Login:</h2>
+        <h2 className="Title">Login</h2>
         <form onSubmit={login}>
           <br />
           <h5>User Email</h5>

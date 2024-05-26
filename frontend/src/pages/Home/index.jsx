@@ -44,8 +44,9 @@ const Home = () => {
     try {
       const result = await axios.get(`http://localhost:5000/products`);
       console.log(result);
+      const shuffledProducts = result.data.result.sort(() => 0.5 - Math.random());
 
-      dispatch(setProducts(result.data.result));
+      dispatch(setProducts(shuffledProducts.slice(0, 15)));
     } catch (error) {
       console.log(error);
     }
