@@ -19,6 +19,7 @@ const AddPhoto = ({ onUrlChange }) => {
       .then((data) => {
         setUrl(data.url);
         onUrlChange(data.url);
+        console.log(data.url);
       })
       .catch((err) => console.log(err));
   };

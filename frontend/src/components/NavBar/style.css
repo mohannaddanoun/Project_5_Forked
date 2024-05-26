@@ -27,5 +27,12 @@
 
   .navBar_firstItem{
     margin-left: 2%;
+
   }
-  
+  nav img{
+    height: 90px;
+    width: 300px;
+  }
+  nav{
+    padding: 0;
+  }
