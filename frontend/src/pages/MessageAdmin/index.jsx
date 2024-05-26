@@ -49,10 +49,10 @@ function Index() {
   const handleClose = () => setShow(false);
 
   return (
-    <div>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark w-100">
+    <div className="bg-body-tertiary d-flex flex-column min-vh-100">
+      <nav className="navbar navbar-expand-lg bg-info w-100">
         <div className="container">
-          <span className="navbar-brand">Navbar</span>
+          <span className="navbar-brand">Admin Dashboard</span>
           <div className="collapse navbar-collapse">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
@@ -61,7 +61,7 @@ function Index() {
               <li className="nav-item">
                 <span className="nav-link" onClick={navigateMessage}>Messages</span>
               </li>
-              <li className="nav-item">
+              <li className="logout-style nav-item logout">
                 <button className="btn btn-outline-light ml-2" onClick={handleLogout}>Logout</button>
               </li>
             </ul>
@@ -69,8 +69,7 @@ function Index() {
         </div>
       </nav>
 
-      {/* BODY DIV */}
-      <div className="container mt-4 mb-5">
+      <div className="container flex-grow-1 mt-4 mb-5">
         <div className="row">
           <div className="col-12">
             <div className="messages-box" style={{ height: '400px', overflowY: 'scroll', overflowX: 'hidden' }}>
@@ -87,11 +86,10 @@ function Index() {
         </div>
       </div>
 
-      <footer className="bg-dark text-white text-center py-3 fixed-bottom w-100">
-        Infinite Horizon
+      <footer className="bg-secondary text-white text-center py-3 fixed-bottom w-100">
+        &#169; Infinite Horizon
       </footer>
 
-      {/* Modal */}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Message Details</Modal.Title>
