@@ -55,6 +55,7 @@ const Products = () => {
               hoverable
               style={{
                 maxWidth: 240,
+                margin:7
               }}
               cover={
                 <img
